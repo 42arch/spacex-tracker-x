@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: DIN;
+    font-weight: 400;
+    src: url(/fonts/D-DIN.woff2) format("woff2");
+  }
+  @font-face {
+    font-family: DIN Bold;
+    font-weight: 500;
+    src: url(/fonts/D-DIN-Bold.woff2) format("woff2");
+  }
+}
