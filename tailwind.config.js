@@ -3,7 +3,7 @@ module.exports = {
 		'./pages/**/*.{js,ts,jsx,tsx}', 
 		'./components/**/*.{js,ts,jsx,tsx}'
 	],
-  darkMode: false, // or 'media' or 'class'
+  darkMode: 'media', // or 'media' or 'class'
 	content: [
     './pages/**/*.{js,ts,jsx,tsx}',
     './components/**/*.{js,ts,jsx,tsx}',
@@ -11,11 +11,15 @@ module.exports = {
   theme: {
     extend: {
 			fontFamily: {
-        'DIN': ['DIN']
+        'DIN': ['DIN'],
+				'DIN-bold': ['DIN Bold'],
       },
 			backgroundImage: {
 				'bg1': "url('/images/bg1.png')",
 				'bg2': "url('/images/bg2.png')"
+			},
+			boxShadow: {
+				slide: 'inset 10rem 0 0 0 #ffffff'
 			}
 		},
   },

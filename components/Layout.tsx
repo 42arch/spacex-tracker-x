@@ -17,7 +17,9 @@ const Layout = ({ children, home }: any) => {
 				<meta name="og:title" content={siteTitle} />
 			</Head>
 			<NavHeader />
-			<main>{ children }</main>
+			<main className='font-DIN'>
+				{ children }
+			</main>
 			{
 				!home && (
 					<div className=''>
