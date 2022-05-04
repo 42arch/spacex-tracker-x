@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import React from 'react'
+import Footer from './Footer'
 import NavHeader from './NavHeader'
 
 export const siteTitle = 'SpaceX Tracker X'
@@ -29,6 +30,7 @@ const Layout = ({ children, home }: any) => {
 					</div>
 				)
 			}
+			<Footer />
 
 		</div>
 	)

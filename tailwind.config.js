@@ -16,7 +16,8 @@ module.exports = {
       },
 			backgroundImage: {
 				'bg1': "url('/images/bg1.png')",
-				'bg2': "url('/images/bg2.png')"
+				'bg2': "url('/images/bg2.png')",
+				'bg3': "url('/images/bg3.png')"
 			},
 			boxShadow: {
 				slide: 'inset 10rem 0 0 0 #ffffff'
