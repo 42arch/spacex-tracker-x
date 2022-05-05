@@ -54,7 +54,7 @@ const LaunchIndex = () => {
 					{
 						tabs.map((tab, index) => {
 							return (
-								<span key={tab} onClick={() => { setActiveTab(index) }} className={`cursor-pointer text-xl hover:bg-slate-900 duration-300 w-28 h-8 md:h-10 leading-8 md:leading-10 text-center rounded-md ${ activeTab === index ? 'bg-slate-900' : '' }`}>
+								<span key={tab} onTouchStart={() => { setActiveTab(index)}} onClick={() => { setActiveTab(index) }} className={`cursor-pointer text-xl hover:bg-slate-900 duration-300 w-28 h-8 md:h-10 leading-8 md:leading-10 text-center rounded-md ${ activeTab === index ? 'bg-slate-900' : '' }`}>
 									{ tab }
 								</span>
 							)
