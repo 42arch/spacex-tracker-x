@@ -65,7 +65,7 @@ const LaunchIndex = () => {
 					{
 						launchList.map((info, index) => {
 							return (
-								<LaunchItem data={info} key={index}></LaunchItem>
+								<LaunchItem data={info} goDetail={() => {console.log(222)}} key={index}></LaunchItem>
 							)
 						})
 					}

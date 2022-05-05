@@ -11,10 +11,10 @@ import { LaunchInfo } from '../../types'
 
 interface IProps {
 	data: LaunchInfo,
-	click: () => void
+	goDetail: () => void
 }
 
-const LaunchItem: FunctionComponent<IProps> = ({ data, click }) => {
+const LaunchItem: FunctionComponent<IProps> = ({ data, goDetail }) => {
 	return (
 		<div className='cursor-pointer hover:bg-slate-900 hover:rounded-sm w-full h-28 min-h-[160px] flex items-center'>
 			<div className='relative w-8 flex justify-center items-center'>
