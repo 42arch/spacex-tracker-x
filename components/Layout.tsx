@@ -8,7 +8,7 @@ export const siteTitle = 'SpaceX Tracker X'
 
 const Layout = ({ children, home }: any) => {
 	return (
-		<div className=''>
+		<div className='w-full h-screen'>
 			<Head>
 				<link rel="icon" href="/favicon.ico" />
 				<meta
@@ -18,10 +18,10 @@ const Layout = ({ children, home }: any) => {
 				<meta name="og:title" content={siteTitle} />
 			</Head>
 			<NavHeader />
-			<main className='font-DIN'>
+			<main className='font-DIN h-auto md:h-main bg-black text-white'>
 				{ children }
 			</main>
-			{
+			{/* {
 				!home && (
 					<div className=''>
 						<Link href="/">
@@ -29,7 +29,7 @@ const Layout = ({ children, home }: any) => {
 						</Link>
 					</div>
 				)
-			}
+			} */}
 			<Footer />
 
 		</div>

@@ -12,8 +12,8 @@ const NavHeader = () => {
 	}
 
 	return (
-		<header className='bg-gray-800'>
-			<nav className='p-5 bg-white relative z-[99] shadow md:flex md:items-center md:justify-between'>
+		// <header className='bg-gray-800'>
+			<nav className='p-4 h-20 bg-white relative z-[99] shadow md:flex md:items-center md:justify-between'>
 				<div className='flex  justify-between items-center'>
 					<span className='text-3xl font-DIN cursor-pointer'>
 						SpaceX Tracker X
@@ -44,7 +44,7 @@ const NavHeader = () => {
 					</li>
 				</ul>
 			</nav>
-		</header>
+		// </header>
 	)
 }
 
