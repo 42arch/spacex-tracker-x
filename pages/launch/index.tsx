@@ -4,43 +4,60 @@ import LaunchItem from '../../components/Launch/LaunchItem'
 import Layout from '../../components/Layout'
 import { LaunchInfo } from '../../types'
 
-const tabs = ['All', 'UpComing', 'Success', 'Fail']
-
-type dataType = {
-	docs: LaunchInfo[],
-	limit: number,
-	page: number,
-	totalDocs: number
-}
+const TABS = ['All', 'Upcoming', 'Success', 'Fail']
 
 const launchList: LaunchInfo[] = []
 let total = 0
 
 const LaunchIndex = () => {
-	total++
-	console.log('render time', total)
+	// total++
+	// console.log('render time', total)
 
 
 	const [activeTab, setActiveTab] = useState(0)
+	const switchTab = (index: number) => {
+		launchList.length = 0
+		setActiveTab(index)
+	}
+
+
 	const [page, setPage] = useState(1)
 
-	const fetcher = (url: string, page: number) => fetch(url, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({ 
-		"query": {
-			// "upcoming": true
-		},
-		"options": {
-			"page": page,
-			"limit": 10,
-			"sort": {
-				"date_unix": "desc"
-			}
-		} }) }).then(res => res.json()).then(data => data.docs)
+	const fetcher = (url: string, page: number, status: string) => {
+		const query: { upcoming?: boolean, success?: boolean } = {}
+		switch (status) {
+			case 'Upcoming':
+				query.upcoming = true
+				break
+			case 'Success':
+				query.success = true
+				break
+			case 'Fail':
+				query.success = false
+				break
+			default:
+				break
+		}
+		return fetch(url, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({
+			query,
+			// "query": {
+			// 	// "upcoming": true
+			// },
+			"options": {
+				"page": page,
+				"limit": 10,
+				"sort": {
+					"date_unix": "desc"
+				}
+			} }) }).then(res => res.json()).then(data => data.docs)
+	}
 
-	const { data, error, mutate, size, setSize } = useSWRInfinite<LaunchInfo[]>(() => (['https://api.spacexdata.com/v4/launches/query', page]), fetcher)
+
+	const { data, error, mutate, size, setSize } = useSWRInfinite<LaunchInfo[]>(() => (['https://api.spacexdata.com/v4/launches/query', page, TABS[activeTab] ]), fetcher)
 	const isLoading = !data && !error
 	
 
-	if(data && data.length>0) {
+	if(data && data.length > 0) {
 		launchList.push(...data[0])
 	}
 	console.log(244, launchList)
@@ -50,11 +67,11 @@ const LaunchIndex = () => {
 			<section className='w-full h-full relative pt-4 pb-18 px-2 md:px-10 flex flex-col'>
 				<div className='w-full h-20 md:h-10 flex flex-wrap justify-evenly items-center'>
 					{
-						tabs.map((tab, index) => {
+						TABS.map((tab, index) => {
 							return (
-								<span key={tab} onTouchStart={() => { setActiveTab(index)}} onClick={() => { setActiveTab(index) }} className={`cursor-pointer text-xl hover:bg-slate-900 duration-300 w-28 h-8 md:h-10 leading-8 md:leading-10 text-center rounded-md ${ activeTab === index ? 'bg-slate-900' : '' }`}>
+								<button key={tab} onClick={() => { switchTab(index) }} className={`cursor-pointer text-xl hover:bg-slate-900 duration-100 w-28 h-8 md:h-10 leading-8 md:leading-10 text-center rounded-md ${ activeTab === index ? 'bg-slate-900' : '' }`}>
 									{ tab }
-								</span>
+								</button>
 							)
 						})
 					}
@@ -64,9 +81,6 @@ const LaunchIndex = () => {
 						launchList.map((info, index) => {
 							return (
 								<LaunchItem data={info} goDetail={() => {console.log(222)}} key={index}></LaunchItem>
-								// <div key={index}>
-								// 	{ index }
-								// </div>
 							)
 						})
 					}
@@ -79,7 +93,6 @@ const LaunchIndex = () => {
 							)
 						}
 					</div>
-
 				</div>
 			</section>
 		</Layout>

@@ -9,12 +9,6 @@ interface IProps {
 	goDetail: () => void
 }
 
-const statusColors = {
-	'success': 'bg-green',
-	'upcomming': 'bg-blue',
-	'fail': 'bg-red',
-}
-
 const LaunchItem: FunctionComponent<IProps> = ({ data, goDetail }) => {
 
 	const { data: rocketInfo } = useRocket(data.rocket)
@@ -42,7 +36,9 @@ const LaunchItem: FunctionComponent<IProps> = ({ data, goDetail }) => {
 			<div className='flex flex-col px-4'>
 				<p className='truncate'>{ data.name }</p>
 				<p className='truncate'>{ data.date_utc }</p>
-				<p className='truncate'>{ data.success ? 'success' : (data.upcoming ? 'upcoming' : 'fail') }</p>
+				<p className={`text-xl ${ data.upcoming ? 'text-blue-500' : ( data.success ? 'text-green-500' : 'text-red-500' )}`}>
+					{ data.success ? 'success' : (data.upcoming ? 'upcoming' : 'fail') }
+				</p>
 			</div>
 			<div className='hidden md:flex flex-col px-4'>
 				<p>Rocket: { rocketInfo?.name }</p>
