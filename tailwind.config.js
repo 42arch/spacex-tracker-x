@@ -12,7 +12,10 @@ module.exports = {
 
     extend: {
 			height: {
-				main: 'calc(100% - 10rem)'
+				main: 'calc(100% - 5rem)'
+			},
+			minHeight: {
+				main: 'calc(100% - 5rem)'
 			},
 			fontFamily: {
         'DIN': ['DIN'],

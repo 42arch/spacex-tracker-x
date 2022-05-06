@@ -10,10 +10,6 @@ type Launch = {
 	launchpad: string
 }
 
-const params = {
-
-}
-
 const fetcher = (url: string, page: number) => fetch(url, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({ 
 	"query": {
 		"upcoming": true
