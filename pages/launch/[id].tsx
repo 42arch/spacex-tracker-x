@@ -4,7 +4,7 @@ import Link from "next/link"
 import Image from 'next/image'
 import { useOneLaunch } from "../../hooks/useOneLaunch"
 import useSWR from "swr"
-import { LaunchInfo } from "../../types"
+import { LaunchInfo, LaunchPad } from "../../types"
 import { GetStaticProps, GetStaticPropsContext } from "next"
 import { format } from "date-fns"
 import { zhCN } from "date-fns/locale"
@@ -18,34 +18,44 @@ export async function getStaticPaths() {
   }
 }
 
+const getOneLaunch = async (id: string | undefined) => {
+	const res = await fetch(`https://api.spacexdata.com/v4/launches/${id}`)
+	const data: LaunchInfo = await res.json()
+	return data
+}
+
+const getOneLaunchpad = async (id: string | undefined) => {
+	const res = await fetch(`https://api.spacexdata.com/v4/launchpads/${id}`)
+	const data: LaunchPad = await res.json()
+	return data
+}
+
 export const getStaticProps: GetStaticProps = async (context: GetStaticPropsContext) => {
-
-	// // const { data: launchInfo } = useOneLaunch(launchId)
-	// const fetcher = (url: string) => fetch(url).then(res => res.json())
-	// const { data, error} = useSWR<LaunchInfo>(`https://api.spacexdata.com/v4/launches/${id}`, fetcher)
-
 	try {
-		const id = context.params?.id
-		const res = await fetch(`https://api.spacexdata.com/v4/launches/${id}`)
-		const data = await res.json() as LaunchInfo
+		const id = context.params?.id?.toString()
+		const data = await getOneLaunch(id)
+		const launchpad = await getOneLaunchpad(data.launchpad)
 		data.date_utc = format(new Date(data.date_utc), "yyyy-MM-dd HH:mm:ss 'UTC'", {locale: zhCN})
+		
 		return {
 			props: {
 				error: false,
-				data: data
+				data: data,
+				launchpad
 			}
 		}
 	} catch (error) {
 		return {
 			props: {
 				error: true,
-				data: null
+				data: null,
+				launchpad: null
 			}
 		}
 	}
 }
 
-export default function Launch({ data, error } : {data: LaunchInfo, error: any}) {
+export default function Launch({ data, launchpad, error } : {data: LaunchInfo, launchpad: LaunchPad, error: any}) {
 
 	return <Layout>
 			<section className='w-full relative pt-4 pb-18 px-2 md:px-10 flex flex-col'>
@@ -64,7 +74,7 @@ export default function Launch({ data, error } : {data: LaunchInfo, error: any})
 											)
 										}
 									</div>
-									<div className="h-full flex flex-col justify-center py-4 md:py-0 px-2 md:px-4">
+									<div className="h-full flex flex-col justify-center py-4 md:py-0 px-2 md:px-16">
 										<span className="py-4 text-3xl md:text-center">
 											{
 												data.name
@@ -87,7 +97,10 @@ export default function Launch({ data, error } : {data: LaunchInfo, error: any})
 										<p className="block text text-gray-400 py-4">{ data.details }</p>
 									</div>
 									<div>
-										<span>LaunchPad</span>
+									<div className="py-4">
+										<p className="block w-24 text-lg">Launchpad:</p>
+										<p className="block text text-gray-400 py-4">{ launchpad.full_name }</p>
+									</div>
 									</div>
 								</div>
 							</div>
