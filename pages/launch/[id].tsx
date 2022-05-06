@@ -49,30 +49,46 @@ export default function Launch({ data, error } : {data: LaunchInfo, error: any})
 
 	return <Layout>
 			<section className='w-full relative pt-4 pb-18 px-2 md:px-10 flex flex-col'>
-				<div className='w-full h-full px-4 md:px-10 py-4 md:py-8 flex flex-col justify-center text-white'>
-					<div>
+				<div className='w-full h-full px-4 md:px-10 py-4 md:py-8 text-gray-200'>
+					<div className="h-auto">
 					{
 						data ? (
-							<div className="w-full h-40 md:h-52 flex flex-col items-center md:flex-row ">
-								<div className="mx-4">
-									{
-										data.links.patch.small ? (
-											<Image src={ data.links.patch.small } alt='patch' width={200} height={200}/>
-										) : (
-											<Image src='/images/spacex-white.png' alt='patch' width={200} height={200}/>
-										)
-									}
-								</div>
-								<div className="h-full flex flex-col justify-center py-4 md:py-0 md:px-4">
-									<span className="py-4 text-3xl font-bold text-center">
+							<div className="flex flex-col">
+								<div className="w-full flex flex-col md:flex-row">
+									<div className="mx-4 flex justify-center items-center">
 										{
-											data.name
+											data.links.patch.small ? (
+												<Image src={ data.links.patch.small } alt='patch' width={200} height={200}/>
+											) : (
+												<Image src='/images/spacex-white.png' alt='patch' width={200} height={200}/>
+											)
 										}
-									</span>
-									<p className="py-2">{ data.date_utc }</p>
-									<p className={`py-2 uppercase ${ data.upcoming ? 'text-blue-500' : ( data.success ? 'text-green-500' : 'text-red-500' )}`}>
-										{ data.success ? 'success' : (data.upcoming ? 'upcoming' : 'fail') }
-									</p>
+									</div>
+									<div className="h-full flex flex-col justify-center py-4 md:py-0 px-2 md:px-4">
+										<span className="py-4 text-3xl md:text-center">
+											{
+												data.name
+											}
+										</span>
+										<p className="py-2">{ data.date_utc }</p>
+										<p className={`py-2 uppercase ${ data.upcoming ? 'text-blue-500' : ( data.success ? 'text-green-500' : 'text-red-500' )}`}>
+											{ data.success ? 'success' : (data.upcoming ? 'upcoming' : 'fail') }
+										</p>
+										{/* <Link href={ data.links.webcast }> */}
+											<button onClick={() => { window.open(data.links.webcast, '__blank') }} className="border-2 border-gray-400 text-gray-400 hover:text-red-500 hover:border-red-500 duration-100 rounded h-10">
+												Watch Webcast
+											</button>
+										{/* </Link> */}
+									</div>
+								</div>
+								<div className="py-4 md:py-8">
+									<div className="py-4">
+										<p className="block w-24 text-lg">Details:</p>
+										<p className="block text text-gray-400 py-4">{ data.details }</p>
+									</div>
+									<div>
+										<span>LaunchPad</span>
+									</div>
 								</div>
 							</div>
 						) : (

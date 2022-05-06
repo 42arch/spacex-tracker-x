@@ -1,6 +1,7 @@
 export type LaunchInfo = {
 	id: string
 	name: string
+	details: string
 	date_utc: string
 	data_local: string
 	window: number
