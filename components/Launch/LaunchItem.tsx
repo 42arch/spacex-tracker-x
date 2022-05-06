@@ -17,7 +17,6 @@ const LaunchItem: FunctionComponent<IProps> = ({ data, goDetail }) => {
 	return (
 		<div className='cursor-pointer hover:bg-slate-900 hover:rounded-sm w-full h-28 min-h-[160px] flex items-center'>
 			<div className='relative w-8 flex justify-center items-center'>
-				{/* <span className='block h-full w-1.5 bg-slate-200 absolute top-1/2'></span> */}
 				<span className={`block w-4 h-4 rounded-full ${ data.upcoming ? 'bg-blue-500' : ( data.success ? 'bg-green-500' : 'bg-red-500' )} z-10`}></span>
 			</div>
 			<div className='w-20 text-center'>
@@ -33,14 +32,14 @@ const LaunchItem: FunctionComponent<IProps> = ({ data, goDetail }) => {
 					)
 				}
 			</div>
-			<div className='flex flex-col px-4'>
+			<div className='h-full py-8 flex flex-col px-4 justify-evenly'>
 				<p className='truncate'>{ data.name }</p>
 				<p className='truncate'>{ data.date_utc }</p>
-				<p className={`text-xl ${ data.upcoming ? 'text-blue-500' : ( data.success ? 'text-green-500' : 'text-red-500' )}`}>
+				<p className={`uppercase ${ data.upcoming ? 'text-blue-500' : ( data.success ? 'text-green-500' : 'text-red-500' )}`}>
 					{ data.success ? 'success' : (data.upcoming ? 'upcoming' : 'fail') }
 				</p>
 			</div>
-			<div className='hidden md:flex flex-col px-4'>
+			<div className='h-full py-8 hidden md:flex flex-col justify-evenly px-4'>
 				<p>Rocket: { rocketInfo?.name }</p>
 				<p>Site: { launchPadInfo?.name }</p>
 				<p>Flight number: { data.flight_number }</p>

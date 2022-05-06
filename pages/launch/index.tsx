@@ -5,9 +5,7 @@ import Layout from '../../components/Layout'
 import { LaunchInfo } from '../../types'
 
 const TABS = ['All', 'Upcoming', 'Success', 'Fail']
-
 const launchList: LaunchInfo[] = []
-let total = 0
 
 const LaunchIndex = () => {
 	const [activeTab, setActiveTab] = useState(0)
@@ -16,7 +14,6 @@ const LaunchIndex = () => {
 		setPage(1)
 		setActiveTab(index)
 	}
-
 
 	const [page, setPage] = useState(1)
 
@@ -37,9 +34,6 @@ const LaunchIndex = () => {
 		}
 		return fetch(url, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({
 			query,
-			// "query": {
-			// 	// "upcoming": true
-			// },
 			"options": {
 				"page": page,
 				"limit": 10,
@@ -49,10 +43,8 @@ const LaunchIndex = () => {
 			} }) }).then(res => res.json()).then(data => data.docs)
 	}
 
-
 	const { data, error, mutate, size, setSize } = useSWRInfinite<LaunchInfo[]>(() => (['https://api.spacexdata.com/v4/launches/query', page, TABS[activeTab] ]), fetcher)
 	const isLoading = !data && !error
-	
 
 	if(data && data.length > 0) {
 		launchList.push(...data[0])
