@@ -1,20 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import useSWRInfinite from "swr/infinite"
 import LaunchItem from '../../components/Launch/LaunchItem'
 import Layout from '../../components/Layout'
-import { useLaunches } from '../../hooks/useLaunches'
 import { LaunchInfo } from '../../types'
 
 const tabs = ['All', 'UpComing', 'Success', 'Fail']
-// type Launch = {
-// 	id: string
-// 	name: string
-// 	flight_number: number
-// 	date_unix: number
-// 	date_utc: string
-// 	rocket: string
-// 	launchpad: string
-// }
 
 type dataType = {
 	docs: LaunchInfo[],
@@ -22,8 +12,14 @@ type dataType = {
 	page: number,
 	totalDocs: number
 }
+
 const launchList: LaunchInfo[] = []
+let total = 0
+
 const LaunchIndex = () => {
+	total++
+	console.log('render time', total)
+
 
 	const [activeTab, setActiveTab] = useState(0)
 	const [page, setPage] = useState(1)
@@ -43,13 +39,15 @@ const LaunchIndex = () => {
 	const { data, error, mutate, size, setSize } = useSWRInfinite<LaunchInfo[]>(() => (['https://api.spacexdata.com/v4/launches/query', page]), fetcher)
 	const isLoading = !data && !error
 	
+
 	if(data && data.length>0) {
 		launchList.push(...data[0])
 	}
-	
+	console.log(244, launchList)
+
 	return (
 		<Layout>
-			<section className='w-full h-full relative pt-4 pb-24 px-2 md:px-10 flex flex-col'>
+			<section className='w-full h-full relative pt-4 pb-18 px-2 md:px-10 flex flex-col'>
 				<div className='w-full h-20 md:h-10 flex flex-wrap justify-evenly items-center'>
 					{
 						tabs.map((tab, index) => {
@@ -66,15 +64,22 @@ const LaunchIndex = () => {
 						launchList.map((info, index) => {
 							return (
 								<LaunchItem data={info} goDetail={() => {console.log(222)}} key={index}></LaunchItem>
+								// <div key={index}>
+								// 	{ index }
+								// </div>
 							)
 						})
 					}
-					{
-						isLoading && (
-							<span>loading</span>
-						)
-					}
-					<button onClick={ () => { setPage(page+1) } }>load more</button>
+					<div className='flex justify-center items-center pt-8'>
+						{
+							isLoading ? (
+								<span className='w-1/2 h-12 text-center'>loading</span>
+							) : (
+								<button className='w-1/2 h-12' onClick={ () => { setPage(page+1) } }>load more</button>
+							)
+						}
+					</div>
+
 				</div>
 			</section>
 		</Layout>

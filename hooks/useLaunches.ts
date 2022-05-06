@@ -22,7 +22,7 @@ const fetcher = (url: string, page: number) => fetch(url, { method: 'POST', head
 		"page": page,
 		"limit": 14,
 		"sort": {
-			"date_unix": "desc"
+			"date_utc": "desc"
 		}
 	} }) }).then(res => res.json())
 
