@@ -53,7 +53,7 @@ const LaunchIndex = () => {
 
 	return (
 		<Layout>
-			<section className='w-full h-full relative pt-4 pb-18 px-2 md:px-10 flex flex-col'>
+			<section className='w-full h-full min-h-screen relative pt-4 pb-18 px-2 md:px-10 flex flex-col'>
 				<div className='w-full h-20 md:h-10 flex flex-wrap justify-evenly items-center'>
 					{
 						TABS.map((tab, index) => {

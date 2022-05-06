@@ -44,7 +44,7 @@ const LaunchItem: FunctionComponent<IProps> = ({ data, goDetail }) => {
 				<p className='truncate'>{ data.name }</p>
 				<p className='truncate'>{ fullDate }</p>
 				<p className={`uppercase ${ data.upcoming ? 'text-blue-500' : ( data.success ? 'text-green-500' : 'text-red-500' )}`}>
-					{ data.success ? 'successful' : (data.upcoming ? 'upcoming' : 'failed') }
+					{ data.success ? 'success' : (data.upcoming ? 'upcoming' : 'fail') }
 				</p>
 			</div>
 			<div className='h-full py-8 hidden md:flex flex-col justify-evenly px-4'>
