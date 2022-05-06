@@ -22,17 +22,26 @@ export const getStaticProps: GetStaticProps = async ({params}: any) => {
 	// const fetcher = (url: string) => fetch(url).then(res => res.json())
 	// const { data, error} = useSWR<LaunchInfo>(`https://api.spacexdata.com/v4/launches/${id}`, fetcher)
 
-	const res = await fetch(`https://api.spacexdata.com/v4/launches/${id}`)
-	const data = await res.json() as LaunchInfo
-	console.log(222, data)
-	return {
-		props: {
-			info: data
+	try {
+		const res = await fetch(`https://api.spacexdata.com/v4/launches/${id}`)
+		const data = await res.json() as LaunchInfo
+		return {
+			props: {
+				error: false,
+				info: data
+			}
+		}
+	} catch (error) {
+		return {
+			props: {
+				error: true,
+				info: null
+			}
 		}
 	}
 }
 
-export default function Launch({ info } : {info: LaunchInfo}) {
+export default function Launch({ info, error } : {info: LaunchInfo, error: any}) {
 	return <Layout>
 			<section className='w-full relative pt-4 pb-18 px-2 md:px-10 flex flex-col'>
 				<div className='w-full h-full px-4 md:px-10 py-4 md:py-8 flex flex-col justify-center text-white'>
@@ -48,7 +57,11 @@ export default function Launch({ info } : {info: LaunchInfo}) {
 								<p>{ info.date_utc }</p>
 							</div>
 						) : (
-							<span>loading</span>
+							error ? (
+								<span>something went wrong</span>
+							) : (
+								<span>loading</span>
+							)
 						)
 					}
 					</div>
