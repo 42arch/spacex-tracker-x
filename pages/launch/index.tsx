@@ -10,13 +10,10 @@ const launchList: LaunchInfo[] = []
 let total = 0
 
 const LaunchIndex = () => {
-	// total++
-	// console.log('render time', total)
-
-
 	const [activeTab, setActiveTab] = useState(0)
 	const switchTab = (index: number) => {
 		launchList.length = 0
+		setPage(1)
 		setActiveTab(index)
 	}
 
