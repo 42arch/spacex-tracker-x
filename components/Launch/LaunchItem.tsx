@@ -23,7 +23,7 @@ const LaunchItem: FunctionComponent<IProps> = ({ data, goDetail }) => {
 
 	return (
 		<Link href={`/launch/${data.id}`}>
-			<div onClick={ () => { goDetail() }  } className='cursor-pointer hover:bg-slate-900 hover:rounded-sm w-full h-28 min-h-[160px] flex items-center'>
+			<div onClick={ () => { goDetail() } } className='cursor-pointer hover:bg-slate-900 hover:rounded-sm w-full h-28 min-h-[160px] flex items-center'>
 				<div className='relative w-8 flex justify-center items-center'>
 					<span className={`block w-4 h-4 rounded-full ${ data.upcoming ? 'bg-blue-500' : ( data.success ? 'bg-green-500' : 'bg-red-500' )} z-10`}></span>
 				</div>
