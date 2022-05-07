@@ -7,6 +7,7 @@ import { GetStaticProps, GetStaticPropsContext } from "next"
 import { format } from "date-fns"
 import { zhCN } from "date-fns/locale"
 import { getOneLaunch, getOneLaunchpad, getOneRocket, getPayloads } from "../../utils/api"
+import { useRouter } from "next/router"
 
 interface IProp {
 	data: LaunchInfo | null
@@ -57,6 +58,7 @@ export const getStaticProps: GetStaticProps = async (context: GetStaticPropsCont
 }
 
 export default function Launch({ data, rocket, launchpad, payloads, error } : IProp) {
+	const router = useRouter()
 	const openLink = (url: string) => {
 		window.open(url, '__blank')
 	}
@@ -180,12 +182,10 @@ export default function Launch({ data, rocket, launchpad, payloads, error } : IP
 					</div>
 
 					<div>
-						<Link href='/launch'>
-							<span className='cursor-pointer w-20 h-12 leading-normal flex items-center text-center hover:text-white'>
-								<ArrowSmLeftIcon className="h-5 w-5"/>
-								<span className="pl-2"> Back </span>
-							</span>
-						</Link>
+						<span onClick={() => router.back()} className='cursor-pointer w-20 h-12 leading-normal flex items-center text-center hover:text-white'>
+							<ArrowSmLeftIcon className="h-5 w-5"/>
+							<span className="pl-2"> Back </span>
+						</span>
 					</div>
 				</div>
 			</section>

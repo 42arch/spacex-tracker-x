@@ -14,10 +14,15 @@ export const getOneLaunchpad = async (id: string | undefined) => {
 	return data
 }
 
+export const getRockets = async (): Promise<Rocket[]> => {
+	const res = await fetch(`${baseUrl}/rockets`)
+	const data: Rocket[] = await res.json()
+	return data
+}
+
 export const getOneRocket = async (id: string | undefined) => {
 	const res = await fetch(`${baseUrl}/rockets/${id}`)
 	const data: Rocket = await res.json()
-	console.log(888, data)
 	return data
 }
 
