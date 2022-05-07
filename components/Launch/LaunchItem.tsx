@@ -14,8 +14,8 @@ interface IProps {
 
 const LaunchItem: FunctionComponent<IProps> = ({ data, goDetail }) => {
 
-	const { data: rocketInfo } = useRocket(data.rocket)
-	const { data: launchPadInfo} = useLaunchPad(data.launchpad)
+	// const { data: rocketInfo } = useRocket(data.rocket)
+	// const { data: launchPadInfo} = useLaunchPad(data.launchpad)
 
 	const year = format(new Date(data.date_utc), 'yyyy', {locale: zhCN})
 	const month = format(new Date(data.date_utc), 'MMMM', {locale: zhCN})
@@ -48,11 +48,11 @@ const LaunchItem: FunctionComponent<IProps> = ({ data, goDetail }) => {
 						{ data.success ? 'success' : (data.upcoming ? 'upcoming' : 'fail') }
 					</p>
 				</div>
-				<div className='h-full py-8 hidden md:flex flex-col justify-evenly px-4'>
+				{/* <div className='h-full py-8 hidden md:flex flex-col justify-evenly px-4'>
 					<p>Rocket: { rocketInfo?.name }</p>
 					<p>Site: { launchPadInfo?.name }</p>
 					<p>Flight number: { data.flight_number }</p>
-				</div>
+				</div> */}
 			</div>
 		</Link>
 	)
