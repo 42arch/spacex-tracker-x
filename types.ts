@@ -20,6 +20,33 @@ export type LaunchInfo = {
 	crew: string[]
 	payloads: string[]
 	links: LaunchLink
+	cores: LaunchCore[]
+}
+
+type LaunchCore = {
+	core: string
+	flight: number
+	gridfins: boolean
+	legs: boolean
+	reused: boolean
+	landing_attempt: boolean
+	landing_success: boolean
+	landing_type: string
+	landpad: string
+}
+
+export type Core = {
+	block: number,
+	reuse_count: number,
+	rtls_attempts: number,
+	rtls_landings: number,
+	asds_attempts: number,
+	asds_landings: number,
+	last_update: string,
+	launches: string[],
+	serial: string,
+	status: string,
+	id: string
 }
 
 type LaunchLink = {
@@ -27,6 +54,7 @@ type LaunchLink = {
 		small: string | null
 		large: string | null
 	},
+	presskit: string
 	webcast: string
 	article: string
 	wikipedia: string
@@ -118,4 +146,45 @@ export type LaunchPad = {
 	images: {
 		large: string[]
 	}
+}
+
+export type Payload = {
+	id: string
+	name: string
+	type: string
+	reused: boolean
+	launch: string
+	customers: string[]
+	dragon: Dragon
+	norad_ids: string[]
+	nationalities: string[]
+	manufacturers: string[]
+	mass_kg: number | null
+	mass_lbs: number | null
+	orbit: string
+	reference_system: string
+	regime: string
+	longitude: number | null
+	semi_major_axis_km:  number | null,
+	eccentricity: number | null,
+	periapsis_km: number | null,
+	apoapsis_km: number | null,
+	inclination_deg: number | null,
+	period_min: number | null,
+	lifespan_years: number | null,
+	epoch: number | null,
+	mean_motion: number | null,
+	raan: number | null,
+	arg_of_pericenter: number | null,
+	mean_anomaly: number | null,
+}
+
+type Dragon = {
+	capsule: null,
+	mass_returned_kg: null,
+	mass_returned_lbs: null,
+	flight_time_sec: null,
+	manifest: null,
+	water_landing: null,
+	land_landing: null
 }

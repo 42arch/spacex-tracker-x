@@ -2,10 +2,19 @@ import Layout from "../../components/Layout"
 import { ArrowSmLeftIcon } from '@heroicons/react/solid'
 import Link from "next/link"
 import Image from 'next/image'
-import { LaunchInfo, LaunchPad } from "../../types"
+import { LaunchInfo, LaunchPad, Payload, Rocket } from "../../types"
 import { GetStaticProps, GetStaticPropsContext } from "next"
 import { format } from "date-fns"
 import { zhCN } from "date-fns/locale"
+import { getOneLaunch, getOneLaunchpad, getOneRocket, getPayloads } from "../../utils/api"
+
+interface IProp {
+	data: LaunchInfo | null
+	rocket: Rocket | null
+	launchpad: LaunchPad | null
+	payloads: Payload[] | null
+	error: boolean
+}
 
 export async function getStaticPaths() {
   return {
@@ -16,30 +25,22 @@ export async function getStaticPaths() {
   }
 }
 
-const getOneLaunch = async (id: string | undefined) => {
-	const res = await fetch(`https://api.spacexdata.com/v4/launches/${id}`)
-	const data: LaunchInfo = await res.json()
-	return data
-}
-
-const getOneLaunchpad = async (id: string | undefined) => {
-	const res = await fetch(`https://api.spacexdata.com/v4/launchpads/${id}`)
-	const data: LaunchPad = await res.json()
-	return data
-}
-
 export const getStaticProps: GetStaticProps = async (context: GetStaticPropsContext) => {
 	try {
 		const id = context.params?.id?.toString()
 		const data = await getOneLaunch(id)
+		const rocket = await getOneRocket(data.rocket)
 		const launchpad = await getOneLaunchpad(data.launchpad)
+		const payloads = await getPayloads(data.payloads)
+
 		data.date_utc = format(new Date(data.date_utc), "yyyy-MM-dd HH:mm:ss 'UTC'", {locale: zhCN})
-		
 		return {
 			props: {
 				error: false,
 				data: data,
-				launchpad
+				rocket,
+				launchpad,
+				payloads
 			}
 		}
 	} catch (error) {
@@ -47,13 +48,18 @@ export const getStaticProps: GetStaticProps = async (context: GetStaticPropsCont
 			props: {
 				error: true,
 				data: null,
-				launchpad: null
+				rocket: null,
+				launchpad: null,
+				payloads: null
 			}
 		}
 	}
 }
 
-export default function Launch({ data, launchpad, error } : {data: LaunchInfo, launchpad: LaunchPad, error: any}) {
+export default function Launch({ data, rocket, launchpad, payloads, error } : IProp) {
+	const openLink = (url: string) => {
+		window.open(url, '__blank')
+	}
 
 	return <Layout>
 			<section className='w-full relative pt-4 pb-18 px-2 md:px-10 flex flex-col'>
@@ -90,27 +96,61 @@ export default function Launch({ data, launchpad, error } : {data: LaunchInfo, l
 								<div className="py-4 md:py-8">
 									<div className="py-4">
 										{/* <p className="block w-24 text-lg">Details:</p> */}
-										<p className="block text text-gray-400 py-4">{ data.details || 'null' }</p>
+										<p className="block text text-lg py-4">{ data.details || 'null' }</p>
 									</div>
+									{
+										rocket && (
+											<div className="py-4">
+												<p className="block w-24 text-lg">Rocket:</p>
+												<Link href={`/rocket/${data.rocket}`} >
+													<a className="block text-gray-400 py-4 hover:text-white">
+														{ rocket.name }
+													</a>
+												</Link>
+											</div>
+										)
+									}
+									{
+										launchpad && (
+											<div className="py-4">
+												<p className="block w-24 text-lg">Launchpad:</p>
+												<p className="block text-gray-400 py-4 hover:text-white">{ launchpad.full_name }</p>
+											</div>
+										)
+									}
+
 									<div className="py-4">
-										<p className="block w-24 text-lg">Launchpad:</p>
-										<p className="block text text-gray-400 py-4">{ launchpad.full_name }</p>
+										<p className="block w-24 text-lg">Payloads:</p>
+										<div>
+											{
+												payloads && payloads.map(payload => (
+													<a key={payload.id} className="block text-gray-400 py-4 hover:text-white">{ payload.name }</a>
+												))
+											}
+										</div>
 									</div>
 									<div className="py-4">
 										<p className="block w-24 text-lg">Links:</p>
 										<div className="flex py-4">
 											{
+												data.links.presskit && (
+													<button onClick={ () => openLink(data.links.presskit) } className="block max-w-[6rem] pr-4 text-center text-gray-400 hover:text-white">
+														Presskit
+													</button>
+												)
+											}
+											{
 												data.links.wikipedia && (
-													<a href={ data.links.wikipedia } className="block max-w-[6rem] pr-4 text-center text-gray-400 hover:text-white">
+													<button onClick={ () => openLink(data.links.wikipedia) } className="block max-w-[6rem] pr-4 text-center text-gray-400 hover:text-white">
 														Wikipedia
-													</a>
+													</button>
 												)
 											}
 											{
 												data.links.article && (
-													<a href={ data.links.article } className="block max-w-[6rem] pr-4 text-center text-gray-400 hover:text-white">
+													<button onClick={ () => openLink(data.links.article) } className="block max-w-[6rem] pr-4 text-center text-gray-400 hover:text-white">
 														Article
-													</a>
+													</button>
 												)
 											}
 										</div>
@@ -120,12 +160,9 @@ export default function Launch({ data, launchpad, error } : {data: LaunchInfo, l
 										<div className="flex flex-wrap justify-evenly just py-4 w-full">
 											{
 												data.links.flickr.original.map(photo => (
-													<button onClick={() => { window.open(photo, '__blank') }} key={photo} className="cursor-pointer w-[24rem] h-[18rem] md:h-[20rem] md:mx-2">
-														<Image className="object-cover rounded" src={photo} layout="responsive" width={400} height={300} alt={photo}></Image>
+													<button onClick={() => { window.open(photo, '__blank') }} key={photo} className="w-[24rem] h-[18rem] md:h-[20rem] md:mx-2">
+														<Image className="object-cover cursor-pointer rounded" src={photo} layout="responsive" width={400} height={300} alt={photo}></Image>
 													</button>
-													// <div key={photo} className="bg-white w-48 h-40 bg-center bg-cover bg-no-repeat" style={{backgroundImage: `url(${photo})`}}>
-
-													// </div>
 												))
 											}
 										</div>
