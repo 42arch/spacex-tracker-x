@@ -14,3 +14,11 @@
     src: url(/fonts/D-DIN-Bold.woff2) format("woff2");
   }
 }
+
+.link-btn {
+	@apply block max-w-[6rem] pr-4 text-center text-gray-400 hover:text-white underline underline-offset-2
+}
+
+.rocket-info-key {
+	@apply block text-gray-400 w-32
+}
