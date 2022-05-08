@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEllipsis, faBars, faXmark } from '@fortawesome/free-solid-svg-icons'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
@@ -12,33 +13,40 @@ const NavHeader = () => {
 	}
 
 	return (
-		// <header className='bg-gray-800'>
-			<nav className='p-4 h-20 bg-white relative z-[99] shadow md:flex md:items-center md:justify-between'>
-				<div className='flex  justify-between items-center'>
-					<span className='text-3xl font-DIN cursor-pointer'>
-						SpaceX Tracker X
-					</span>
+			<nav className='p-4 h-16 md:h-20 bg-white relative z-[99] shadow md:flex md:items-center md:justify-between'>
+				<div className='flex justify-between items-center'>
+					<Link href='/'>
+						<a className='text-3xl font-DIN'>
+							SpaceX Tracker X
+						</a>
+					</Link>
+
 					<span className='text-3xl cursor-pointer mx-2 md:hidden block'>
 						<FontAwesomeIcon name='menu' icon={ opened ? faXmark : faBars} size="sm" onClick={ toggleMenu }/>
 					</span>
 				</div>
-
 				<ul className={`md:flex md:items-center z-[999] md:z-auto md:static absolute bg-white w-full left-0 md:w-auto md:py-0 py-4 md:pl-0 pl-7
-				 md:opacity-100 opacity-0 transition-all ease-in duration-200 ${opened ? 'opacity-100' : ''}`}>
+				 md:opacity-100 opacity-0 transition-all ease-in duration-200 ${opened ? 'opacity-100' : 'invisible'}`}>
 					<li className='mx-4 my-6 md:my-0'>
-						<a href="#home" className='text-xl hover:text-cyan-400 duration-500'>Home</a>
+						<Link href='/'>
+							<a className='text-xl hover:text-blue-500 duration-500'>Home</a>
+						</Link>
 					</li>
 					<li className='mx-4 my-6 md:my-0'>
-						<a href="#launchs" className='text-xl hover:text-cyan-400 duration-500'>Launch</a>
+						<Link href='/launch'>
+							<a className='text-xl hover:text-blue-500 duration-500'>Launch</a>
+						</Link>
 					</li>
 					<li className='mx-4 my-6 md:my-0'>
-						<a href="#category" className='text-xl hover:text-cyan-400 duration-500'>Category</a>
+						<Link href='/category'>
+							<a className='text-xl hover:text-blue-500 duration-500'>Category</a>					
+						</Link>
 					</li>
 					<li className='mx-4 my-6 md:my-0'>
-						<a href="" className='text-xl hover:text-cyan-400 duration-500'>ISS</a>
+						<a href="" className='text-xl hover:text-blue-500 duration-500'>ISS</a>
 					</li>
 					<li className='mx-4 my-6 md:my-0'>
-						<a href="" className='text-xl hover:text-cyan-400 duration-500'>
+						<a href="" className='text-xl hover:text-blue-500 duration-500'>
 							<FontAwesomeIcon icon={ faGithub } size="lg" />
 						</a>
 					</li>

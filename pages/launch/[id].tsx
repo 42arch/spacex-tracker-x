@@ -162,7 +162,7 @@ export default function Launch({ data, rocket, launchpad, payloads, error } : IP
 									</div>
 									<div className="py-4">
 										<p className="block w-24 text-lg">Photos:</p>
-										<div className="flex flex-wrap justify-evenly just py-4 w-full">
+										<div className="flex flex-wrap justify-evenly py-4 w-full">
 											{
 												data.links.flickr.original.map(photo => (
 													<button onClick={() => { window.open(photo, '__blank') }} key={photo} className="w-[24rem] h-[18rem] md:h-[20rem] md:mx-2">
@@ -183,7 +183,6 @@ export default function Launch({ data, rocket, launchpad, payloads, error } : IP
 						)
 					}
 					</div>
-
 					<div>
 						<span onClick={() => router.back()} className='cursor-pointer w-20 h-12 leading-normal flex items-center text-center hover:text-white'>
 							<ArrowSmLeftIcon className="h-5 w-5"/>

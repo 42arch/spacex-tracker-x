@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import Image from 'next/image'
 import { ArrowSmLeftIcon } from '@heroicons/react/solid'
 import { GetStaticProps, GetStaticPropsContext } from 'next'
@@ -7,7 +6,6 @@ import React from 'react'
 import Layout from '../../components/Layout'
 import { LaunchPad } from '../../types'
 import { getLaunchpads, getOneLaunchpad } from '../../utils/api'
-import LocationMap from '../../components/Map/LocationMap'
 import Map from '../../components/Map/LocationMap'
 
 export async function getStaticPaths() {
