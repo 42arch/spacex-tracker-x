@@ -96,10 +96,13 @@ export default function Launch({ data, rocket, launchpad, payloads, error } : IP
 									</div>
 								</div>
 								<div className="py-4 md:py-8">
-									<div className="py-4">
-										{/* <p className="block w-24 text-lg">Details:</p> */}
-										<p className="block text text-lg py-4">{ data.details || 'null' }</p>
-									</div>
+									{
+										data.details && (
+											<div className="py-4">
+												<p className="block text text-lg py-4">{ data.details }</p>
+											</div>
+										)
+									}
 									{
 										rocket && (
 											<div className="py-4">
@@ -114,7 +117,9 @@ export default function Launch({ data, rocket, launchpad, payloads, error } : IP
 										launchpad && (
 											<div className="py-4">
 												<p className="block w-24 text-lg">Launchpad</p>
-												<a className="block cursor-pointer text-gray-400 py-4 hover:text-white underline underline-offset-2">{ launchpad.full_name }</a>
+												<Link href={`/launchpad/${data.launchpad}`}>
+													<a className="block text-gray-400 py-4 hover:text-white underline underline-offset-2">{ launchpad.name }</a>
+												</Link>
 											</div>
 										)
 									}

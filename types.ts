@@ -133,9 +133,10 @@ export type LaunchPad = {
 	id: string
 	name: string
 	status: string
-	detail: string
+	details: string
 	full_name: string
 	locality: string
+	timezone: string
 	region: string
 	latitude: number
 	longitude: number

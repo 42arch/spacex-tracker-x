@@ -8,6 +8,12 @@ export const getOneLaunch = async (id: string | undefined) => {
 	return data
 }
 
+export const getLaunchpads = async (): Promise<LaunchPad[]> => {
+	const res = await fetch(`${baseUrl}/launchpads`)
+	const data: LaunchPad[] = await res.json()
+	return data
+}
+
 export const getOneLaunchpad = async (id: string | undefined) => {
 	const res = await fetch(`${baseUrl}/launchpads/${id}`)
 	const data: LaunchPad = await res.json()
