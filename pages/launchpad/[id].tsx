@@ -7,6 +7,8 @@ import React from 'react'
 import Layout from '../../components/Layout'
 import { LaunchPad } from '../../types'
 import { getLaunchpads, getOneLaunchpad } from '../../utils/api'
+import LocationMap from '../../components/Map/LocationMap'
+import Map from '../../components/Map/LocationMap'
 
 export async function getStaticPaths() {
 	const launchpads = await getLaunchpads()
@@ -87,40 +89,6 @@ const Launchpad = ({ data, loading }: { data: LaunchPad, loading: boolean }) => 
 									</div>
 								</div>
 							</div>
-							{/* <div className="py-4">
-								<p className="block text-lg">Engine</p>
-								<div className='px-2 max-w-sm md:max-w-xs'>
-									<div className='py-1 flex'>
-										<a className="rocket-info-key">Type: </a>
-										<a className="block text-gray-400">{ data.engines.type }</a>
-									</div>
-									<div className='py-1 flex'>
-										<a className="rocket-info-key">Version: </a>
-										<a className="block text-gray-400">{ data.engines.version }</a>
-									</div>
-									<div className='py-1 flex'>
-										<a className="rocket-info-key">Number: </a>
-										<a className="block text-gray-400">{ data.engines.number }</a>
-									</div>
-									<div className='py-1 flex'>
-										<a className="rocket-info-key">layout: </a>
-										<a className="block text-gray-400">{ data.engines.layout }</a>
-									</div>
-								</div>
-							</div>
-							<div className="py-4">
-								<p className="block text-lg">Payload Weights</p>
-								<div className='px-2 max-w-sm md:max-w-xs'>
-									{
-										data.payload_weights.map(w => (
-											<div className='py-1 flex' key={w.id}>
-												<a className="rocket-info-key" title={w.name}>{ w.id }: </a>
-												<a className="block text-gray-400">{ w.kg } kg / { w.lb } lb</a>
-											</div>	
-										))
-									}
-								</div>
-							</div> */}
 							<div className="py-4">
 								<p className="block w-24 text-lg">Photos</p>
 								<div className="flex px-2 flex-wrap justify-evenly just py-4 w-full">
@@ -133,7 +101,11 @@ const Launchpad = ({ data, loading }: { data: LaunchPad, loading: boolean }) => 
 									}
 								</div>
 							</div>
-
+						</div>
+						<div className='py-4 flex justify-center'>
+							<div className='w-full md:w-2/3 h-72 rounded'>
+								<Map coordinate={{longitude: data.longitude, latitude: data.latitude}}/>
+							</div>
 						</div>
 						<span onClick={() => router.back()} className='cursor-pointer w-20 h-12 leading-normal flex items-center text-center hover:text-white'>
 							<ArrowSmLeftIcon className="h-5 w-5"/>

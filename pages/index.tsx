@@ -1,6 +1,5 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import Image from 'next/image'
 import NextLaunchSection from '../components/NextLaunchSection'
 import Layout, { siteTitle } from '../components/Layout'
 import CategorySection from '../components/CategorySection'
@@ -18,7 +17,6 @@ const Home: NextPage = () => {
 				<LaunchRecordSection/>
 				<CategorySection/>
 			</div>
-
 		</Layout>
 	)
 }
