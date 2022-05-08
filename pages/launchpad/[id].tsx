@@ -103,7 +103,7 @@ const Launchpad = ({ data, loading }: { data: LaunchPad, loading: boolean }) => 
 							</div>
 						</div>
 						<div className='py-4 flex justify-center'>
-							<div className='w-full md:w-2/3 h-72 rounded'>
+							<div className='w-full md:w-2/3 h-96 md:h-80 rounded'>
 								<Map coordinate={{longitude: data.longitude, latitude: data.latitude}}/>
 							</div>
 						</div>
