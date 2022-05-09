@@ -1,0 +1,18 @@
+{
+	"nav": {
+		"home": "主页",
+		"mission": "任务",
+		"category": "分类",
+		"iss": "ISS"
+	},
+	"test": "test",
+	"next": {
+		"title": "下次发射",
+		"time": {
+			"day": "天",
+			"hour": "小时",
+			"min": "分",
+			"sec": "秒"
+		}
+	}
+}

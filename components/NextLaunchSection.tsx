@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { ArrowDownIcon } from '@heroicons/react/solid'
 import { useNextLaunch } from '../hooks/useNextLaunch'
 import { formatDuration, intervalToDuration, Duration, differenceInDays } from 'date-fns'
+import { useTranslation } from 'next-i18next'
 
 const NextLaunchSection = () => {
+	const { t } = useTranslation('common')
 	const { data: nextLaunchData, error, loading } = useNextLaunch()
 	const [ countdown, setCountdown ] = useState<Duration>({})
 
@@ -29,7 +31,7 @@ const NextLaunchSection = () => {
 						<div className='flex flex-col justify-between h-96 w-4/5 md:w-1/2 p-8 bg-slate-600 bg-opacity-50 rounded-lg'>
 							<div className='flex flex-col'>
 								<span className='text-lg text-white'>
-									NEXT LAUNCH
+									{ t('next.title') }
 								</span>
 								<span className='text-3xl pt-3 text-white font-bold'>
 									{
@@ -41,19 +43,19 @@ const NextLaunchSection = () => {
 							<div className='flex h-24 w-full justify-evenly'>
 								<div className='flex flex-col w-14'>
 									<span className='text-3xl text-left'>{ countdown.days }</span>
-									<span className='pt-1'>DAYS</span>
+									<span className='pt-1'>{ t('next.time.day') }</span>
 								</div>
 								<div className='flex flex-col w-14'>
 									<span className='text-3xl text-left'>{ countdown.hours }</span>
-									<span className='pt-1'>HOURS</span>
+									<span className='pt-1'>{ t('next.time.hour') }</span>
 								</div>
 								<div className='flex flex-col w-14'>
 									<span className='text-3xl text-left'>{ countdown.minutes }</span>
-									<span className='pt-1'>MINS</span>
+									<span className='pt-1'>{ t('next.time.min') }</span>
 								</div>
 								<div className='flex flex-col w-14'>
 									<span className='text-3xl text-left'>{ countdown.seconds }</span>
-									<span className='pt-1'>SECS</span>
+									<span className='pt-1'>{ t('next.time.sec') }</span>
 								</div>
 							</div>
 		

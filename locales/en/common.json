@@ -1,0 +1,17 @@
+{
+	"nav": {
+		"home": "Home",
+		"mission": "Mission",
+		"category": "Category",
+		"iss": "ISS"
+	},
+	"next": {
+		"title": "Next Launch",
+		"time": {
+			"day": "days",
+			"hour": "hours",
+			"min": "mins",
+			"sec": "secs"
+		}
+	}
+}
