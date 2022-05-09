@@ -26,7 +26,7 @@ const NavHeader = () => {
 					</span>
 				</div>
 				<ul className={`md:flex md:items-center z-[999] md:z-auto md:static absolute bg-white w-full left-0 md:w-auto md:py-0 py-4 md:pl-0 pl-7
-				 md:opacity-100 opacity-0 transition-all ease-in duration-200 ${opened ? 'opacity-100' : 'invisible'}`}>
+				 md:opacity-100 opacity-0 transition-all ease-in duration-200 ${opened ? 'opacity-100 visible' : 'invisible md:visible'}` }>
 					<li className='mx-4 my-6 md:my-0'>
 						<Link href='/'>
 							<a className='text-xl hover:text-blue-500 duration-500'>Home</a>
