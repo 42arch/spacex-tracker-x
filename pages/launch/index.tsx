@@ -1,3 +1,4 @@
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Link from 'next/link'
 import React, { useEffect, useMemo, useState } from 'react'
 import useSWRInfinite from "swr/infinite"
@@ -7,6 +8,14 @@ import { LaunchInfo } from '../../types'
 
 const TABS = ['All', 'Upcoming', 'Success', 'Fail']
 const launchList: LaunchInfo[] = []
+
+export async function getStaticProps({ locale }: {locale: any}) {
+	return {
+		props: {
+			...(await serverSideTranslations(locale, ['common']))
+		}
+	}
+}
 
 const LaunchIndex = () => {
 	const [activeTab, setActiveTab] = useState(0)

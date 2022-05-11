@@ -8,6 +8,7 @@ import { format } from "date-fns"
 import { zhCN } from "date-fns/locale"
 import { getOneLaunch, getOneLaunchpad, getOneRocket, getPayloads } from "../../utils/api"
 import { useRouter } from "next/router"
+import { serverSideTranslations } from "next-i18next/serverSideTranslations"
 
 interface IProp {
 	data: LaunchInfo | null
@@ -26,9 +27,9 @@ export async function getStaticPaths() {
   }
 }
 
-export const getStaticProps: GetStaticProps = async (context: GetStaticPropsContext) => {
+export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
 	try {
-		const id = context.params?.id?.toString()
+		const id = params?.id?.toString()
 		const data = await getOneLaunch(id)
 		const rocket = await getOneRocket(data.rocket)
 		const launchpad = await getOneLaunchpad(data.launchpad)
@@ -37,6 +38,7 @@ export const getStaticProps: GetStaticProps = async (context: GetStaticPropsCont
 		data.date_utc = format(new Date(data.date_utc), "yyyy-MM-dd HH:mm:ss 'UTC'", {locale: zhCN})
 		return {
 			props: {
+				...( locale && await serverSideTranslations(locale, ['common'])),
 				error: false,
 				data: data,
 				rocket,
@@ -47,6 +49,7 @@ export const getStaticProps: GetStaticProps = async (context: GetStaticPropsCont
 	} catch (error) {
 		return {
 			props: {
+				...( locale && await serverSideTranslations(locale, ['common'])),
 				error: true,
 				data: null,
 				rocket: null,
