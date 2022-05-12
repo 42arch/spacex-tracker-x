@@ -44,7 +44,7 @@ const LaunchIndex = () => {
 		return fetch(url, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({
 			query,
 			"options": {
-				"select": "id, name, date_utc",
+				// "select": "id, name, date_utc, links",
 				"page": page,
 				"limit": 10,
 				"sort": {

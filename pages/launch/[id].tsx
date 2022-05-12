@@ -38,8 +38,9 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
 	let localeProps = null
 	try {
 		const id = params?.id?.toString()
-		localeProps = await serverSideTranslations(locale, ['common'])
 		data = await getOneLaunch(id)
+		localeProps = await serverSideTranslations(locale, ['common'])
+		console.log(2222, localeProps)
 		// rocket = await getOneRocket(data.rocket)
 		// launchpad = await getOneLaunchpad(data.launchpad)
 		// payloads = await getPayloads(data.payloads)
@@ -48,7 +49,7 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
 	}
 	return {
 		props: {
-			...localeProps,
+			// ...localeProps,
 			data,
 			rocket,
 			launchpad,
@@ -107,9 +108,9 @@ export default function Launch({ data, rocket, launchpad, payloads } : IProp) {
 										data.rocket && (
 											<div className="py-4">
 												<p className="block w-24 text-lg">Rocket</p>
-												<Link href={`/rocket/${data.rocket}`} >
+												{/* <Link href={`/rocket/${data.rocket}`} >
 													<a className="block text-gray-400 py-4 hover:text-white underline underline-offset-2">{ rocket.name }</a>
-												</Link>
+												</Link> */}
 											</div>
 										)
 									}
@@ -117,9 +118,9 @@ export default function Launch({ data, rocket, launchpad, payloads } : IProp) {
 										data.launchpad && (
 											<div className="py-4">
 												<p className="block w-24 text-lg">Launchpad</p>
-												<Link href={`/launchpad/${data.launchpad}`}>
+												{/* <Link href={`/launchpad/${data.launchpad}`}>
 													<a className="block text-gray-400 py-4 hover:text-white underline underline-offset-2">{ launchpad.name }</a>
-												</Link>
+												</Link> */}
 											</div>
 										)
 									}
