@@ -35,8 +35,10 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
 	let rocket = null
 	let launchpad = null
 	let payloads = null
+	let localeProps = null
 	try {
 		const id = params?.id?.toString()
+		localeProps = await serverSideTranslations(locale, ['common'])
 		data = await getOneLaunch(id)
 		rocket = await getOneRocket(data.rocket)
 		launchpad = await getOneLaunchpad(data.launchpad)
@@ -46,7 +48,7 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
 	}
 	return {
 		props: {
-			...(await serverSideTranslations(locale, ['common'])),
+			...localeProps,
 			data,
 			rocket,
 			launchpad,
