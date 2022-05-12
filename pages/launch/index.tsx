@@ -59,7 +59,6 @@ const LaunchIndex = () => {
 	if(data && data.length > 0) {
 		launchList.push(...data[0])
 	}
-	console.log(244, launchList)
 
 	return (
 		<Layout>

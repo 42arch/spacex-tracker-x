@@ -2,6 +2,21 @@ import { Core, LaunchInfo, LaunchPad, Payload, Rocket } from "../types"
 
 const baseUrl = 'https://api.spacexdata.com/v4'
 
+export const getLaunchs = async (page: number) => {
+	const res = await fetch(`${baseUrl}/launches/query`, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({ 
+		"query": {
+			"upcoming": true
+		},
+		"options": {
+			"page": page,
+			"limit": 10,
+			"sort": {
+				"date_utc": "desc"
+			}
+		} }) })
+
+}
+
 export const getOneLaunch = async (id: string | undefined) => {
 	const res = await fetch(`${baseUrl}/launches/${id}`)
 	const data: LaunchInfo = await res.json()

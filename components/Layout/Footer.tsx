@@ -7,7 +7,6 @@ const Footer: FunctionComponent = () => {
 	const router = useRouter()
 	const {theme, setTheme} = useTheme()
 	const [curLocale, setCurLocale] = useState(router.locale)
-
 	useEffect(() => {
 		router.push(router.route, router.asPath, {
 			locale: curLocale,
@@ -20,6 +19,14 @@ const Footer: FunctionComponent = () => {
 		} else {
 			setCurLocale('en')
 		}
+	}
+
+	const [mounted, setMounted] = useState(false)
+	useEffect(() => {
+		setMounted(true)
+	}, [])
+	if (!mounted) {
+		return null
 	}
 
 	return (

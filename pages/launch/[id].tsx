@@ -11,8 +11,8 @@ import { useRouter } from "next/router"
 import { serverSideTranslations } from "next-i18next/serverSideTranslations"
 
 interface IProp {
-	data: LaunchInfo | null
-	rocket: Rocket | null
+	data: LaunchInfo
+	rocket: Rocket
 	launchpad: LaunchPad | null
 	payloads: Payload[] | null
 	error: boolean
@@ -31,40 +31,43 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
 	if(!locale) {
 		locale = 'en'
 	}
-	// try {
-	// 	console.log(2333, locale)
+	let data = null
+	// let rocket = null
+	// let launchpad = null
+	// let payload = null
+	try {
 		const id = params?.id?.toString()
-		const data = await getOneLaunch(id)
-		const rocket = await getOneRocket(data.rocket)
-		const launchpad = await getOneLaunchpad(data.launchpad)
-		const payloads = await getPayloads(data.payloads)
+		data = await getOneLaunch(id)
+		// const rocket = await getOneRocket(data.rocket)
+		// const launchpad = await getOneLaunchpad(data.launchpad)
+		// const payloads = await getPayloads(data.payloads)
 
 		data.date_utc = format(new Date(data.date_utc), "yyyy-MM-dd HH:mm:ss 'UTC'", {locale: zhCN})
+		// return {
+		// 	props: {
+		// 		...(await serverSideTranslations(locale, ['common'])),
+		// 		error: false,
+		// 		data: data,
+		// 		rocket,
+		// 		launchpad,
+		// 		payloads
+		// 	}
+		// }
+	} catch (error) {
 		return {
 			props: {
-				...(await serverSideTranslations(locale, ['common'])),
-				error: false,
-				data: data,
-				rocket,
-				launchpad,
-				payloads
+				data
 			}
 		}
-	// } catch (error) {
-	// 	return {
-	// 		props: {
-	// 			...(await serverSideTranslations(locale, ['common'])),
-	// 			error: true,
-	// 			data: null,
-	// 			rocket: null,
-	// 			launchpad: null,
-	// 			payloads: null
-	// 		}
-	// 	}
-	// }
+	}
+	return {
+		props: {
+			data
+		}
+	}
 }
 
-export default function Launch({ data, rocket, launchpad, payloads, error } : IProp) {
+export default function Launch({ data } : IProp) {
 	const router = useRouter()
 	const openLink = (url: string) => {
 		window.open(url, '__blank')
@@ -111,36 +114,36 @@ export default function Launch({ data, rocket, launchpad, payloads, error } : IP
 										)
 									}
 									{
-										rocket && (
+										data.rocket && (
 											<div className="py-4">
 												<p className="block w-24 text-lg">Rocket</p>
 												<Link href={`/rocket/${data.rocket}`} >
-													<a className="block text-gray-400 py-4 hover:text-white underline underline-offset-2">{ rocket.name }</a>
+													<a className="block text-gray-400 py-4 hover:text-white underline underline-offset-2">{ data.rocket }</a>
 												</Link>
 											</div>
 										)
 									}
 									{
-										launchpad && (
+										data.launchpad && (
 											<div className="py-4">
 												<p className="block w-24 text-lg">Launchpad</p>
 												<Link href={`/launchpad/${data.launchpad}`}>
-													<a className="block text-gray-400 py-4 hover:text-white underline underline-offset-2">{ launchpad.name }</a>
+													<a className="block text-gray-400 py-4 hover:text-white underline underline-offset-2">{ data.launchpad }</a>
 												</Link>
 											</div>
 										)
 									}
 
-									<div className="py-4">
+									{/* <div className="py-4">
 										<p className="block w-24 text-lg">Payloads:</p>
 										<div>
 											{
-												payloads && payloads.map(payload => (
+												data.payloads && data.payloads.map(payload => (
 													<a key={payload.id} className="block text-gray-400 py-4 hover:text-white">{ payload.name }</a>
 												))
 											}
 										</div>
-									</div>
+									</div> */}
 									<div className="py-4">
 										<p className="block w-24 text-lg">Links:</p>
 										<div className="flex py-4">
@@ -181,13 +184,10 @@ export default function Launch({ data, rocket, launchpad, payloads, error } : IP
 									</div>
 								</div>
 							</div>
-						) : (
-							error ? (
+						) : 
+							(
 								<span>Something went wrong</span>
-							) : (
-								<span>Loading</span>
 							)
-						)
 					}
 					</div>
 				</div>
