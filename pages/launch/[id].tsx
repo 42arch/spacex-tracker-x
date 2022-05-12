@@ -28,7 +28,11 @@ export async function getStaticPaths() {
 }
 
 export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
+	if(!locale) {
+		locale = 'en'
+	}
 	try {
+		console.log(2333, locale)
 		const id = params?.id?.toString()
 		const data = await getOneLaunch(id)
 		const rocket = await getOneRocket(data.rocket)
@@ -37,8 +41,9 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
 
 		data.date_utc = format(new Date(data.date_utc), "yyyy-MM-dd HH:mm:ss 'UTC'", {locale: zhCN})
 		return {
+
 			props: {
-				// ...( locale && await serverSideTranslations(locale, ['common'])),
+				...(await serverSideTranslations(locale, ['common'])),
 				error: false,
 				data: data,
 				rocket,
@@ -49,7 +54,7 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
 	} catch (error) {
 		return {
 			props: {
-				// ...( locale && await serverSideTranslations(locale, ['common'])),
+				...(await serverSideTranslations(locale, ['common'])),
 				error: true,
 				data: null,
 				rocket: null,
