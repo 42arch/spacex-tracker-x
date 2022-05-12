@@ -13,7 +13,7 @@ export async function getStaticPaths() {
 	const enPaths = launchpads.map(l => (`/launchpad/${l.id}`))
 	const cnPaths = launchpads.map(l => (`/zh-CN/launchpad/${l.id}`))
 	return {
-		paths: [...enPaths, cnPaths],
+		paths: [...enPaths, ...cnPaths],
 		fallback: false
 	}
 }
