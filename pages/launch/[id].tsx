@@ -18,14 +18,14 @@ interface IProp {
 	error: boolean
 }
 
-// export async function getStaticPaths() {
-//   return {
-//     paths: [
-      
-//     ],
-//     fallback: true
-//   }
-// }
+export async function getStaticPaths() {
+	return {
+		paths: [
+			
+		],
+		fallback: true
+	}
+}
 
 export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
 	if(!locale) {
