@@ -6,7 +6,6 @@ import React, { FunctionComponent, useEffect, useState } from 'react'
 const Footer: FunctionComponent = () => {
 	const router = useRouter()
 	const {theme, setTheme} = useTheme()
-	console.log(111, router.locale)
 	const [curLocale, setCurLocale] = useState(router.locale)
 
 	useEffect(() => {
