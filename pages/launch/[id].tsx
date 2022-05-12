@@ -40,9 +40,9 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
 		const id = params?.id?.toString()
 		localeProps = await serverSideTranslations(locale, ['common'])
 		data = await getOneLaunch(id)
-		rocket = await getOneRocket(data.rocket)
-		launchpad = await getOneLaunchpad(data.launchpad)
-		payloads = await getPayloads(data.payloads)
+		// rocket = await getOneRocket(data.rocket)
+		// launchpad = await getOneLaunchpad(data.launchpad)
+		// payloads = await getPayloads(data.payloads)
 		data.date_utc = format(new Date(data.date_utc), "yyyy-MM-dd HH:mm:ss 'UTC'", {locale: zhCN})
 	} catch (error) {
 	}
