@@ -46,6 +46,7 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
 	}
 	return {
 		props: {
+			...(await serverSideTranslations(locale, ['common'])),
 			data,
 			rocket,
 			launchpad,
