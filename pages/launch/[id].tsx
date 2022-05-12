@@ -21,7 +21,8 @@ interface IProp {
 export async function getStaticPaths() {
 	return {
 		paths: [
-			"6243ada6af52800c6e919253"
+			"/launch/6243ada6af52800c6e919253",
+			"/zh-CN/launch/6243ada6af52800c6e919253"
 		],
 		fallback: true
 	}
