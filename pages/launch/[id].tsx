@@ -38,7 +38,7 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
 		data.date_utc = format(new Date(data.date_utc), "yyyy-MM-dd HH:mm:ss 'UTC'", {locale: zhCN})
 		return {
 			props: {
-				...( locale && await serverSideTranslations(locale, ['common'])),
+				// ...( locale && await serverSideTranslations(locale, ['common'])),
 				error: false,
 				data: data,
 				rocket,
@@ -49,7 +49,7 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
 	} catch (error) {
 		return {
 			props: {
-				...( locale && await serverSideTranslations(locale, ['common'])),
+				// ...( locale && await serverSideTranslations(locale, ['common'])),
 				error: true,
 				data: null,
 				rocket: null,
