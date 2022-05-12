@@ -13,8 +13,8 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations"
 interface IProp {
 	data: LaunchInfo
 	rocket: Rocket
-	launchpad: LaunchPad | null
-	payloads: Payload[] | null
+	launchpad: LaunchPad
+	payloads: Payload[]
 	error: boolean
 }
 
@@ -32,42 +32,37 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
 		locale = 'en'
 	}
 	let data = null
-	// let rocket = null
-	// let launchpad = null
-	// let payload = null
+	let rocket = null
+	let launchpad = null
+	let payloads = null
 	try {
 		const id = params?.id?.toString()
 		data = await getOneLaunch(id)
-		// const rocket = await getOneRocket(data.rocket)
-		// const launchpad = await getOneLaunchpad(data.launchpad)
-		// const payloads = await getPayloads(data.payloads)
-
+		rocket = await getOneRocket(data.rocket)
+		launchpad = await getOneLaunchpad(data.launchpad)
+		payloads = await getPayloads(data.payloads)
 		data.date_utc = format(new Date(data.date_utc), "yyyy-MM-dd HH:mm:ss 'UTC'", {locale: zhCN})
+	} catch (error) {
 		// return {
 		// 	props: {
-		// 		...(await serverSideTranslations(locale, ['common'])),
-		// 		error: false,
-		// 		data: data,
+		// 		data,
 		// 		rocket,
 		// 		launchpad,
 		// 		payloads
 		// 	}
 		// }
-	} catch (error) {
-		return {
-			props: {
-				data
-			}
-		}
 	}
 	return {
 		props: {
-			data
+			data,
+			rocket,
+			launchpad,
+			payloads
 		}
 	}
 }
 
-export default function Launch({ data } : IProp) {
+export default function Launch({ data, rocket, launchpad, payloads } : IProp) {
 	const router = useRouter()
 	const openLink = (url: string) => {
 		window.open(url, '__blank')
@@ -118,7 +113,7 @@ export default function Launch({ data } : IProp) {
 											<div className="py-4">
 												<p className="block w-24 text-lg">Rocket</p>
 												<Link href={`/rocket/${data.rocket}`} >
-													<a className="block text-gray-400 py-4 hover:text-white underline underline-offset-2">{ data.rocket }</a>
+													<a className="block text-gray-400 py-4 hover:text-white underline underline-offset-2">{ rocket.name }</a>
 												</Link>
 											</div>
 										)
@@ -128,22 +123,22 @@ export default function Launch({ data } : IProp) {
 											<div className="py-4">
 												<p className="block w-24 text-lg">Launchpad</p>
 												<Link href={`/launchpad/${data.launchpad}`}>
-													<a className="block text-gray-400 py-4 hover:text-white underline underline-offset-2">{ data.launchpad }</a>
+													<a className="block text-gray-400 py-4 hover:text-white underline underline-offset-2">{ launchpad.name }</a>
 												</Link>
 											</div>
 										)
 									}
 
-									{/* <div className="py-4">
+									<div className="py-4">
 										<p className="block w-24 text-lg">Payloads:</p>
 										<div>
 											{
-												data.payloads && data.payloads.map(payload => (
+												payloads && payloads.map(payload => (
 													<a key={payload.id} className="block text-gray-400 py-4 hover:text-white">{ payload.name }</a>
 												))
 											}
 										</div>
-									</div> */}
+									</div>
 									<div className="py-4">
 										<p className="block w-24 text-lg">Links:</p>
 										<div className="flex py-4">
@@ -186,7 +181,7 @@ export default function Launch({ data } : IProp) {
 							</div>
 						) : 
 							(
-								<span>Something went wrong</span>
+								<span>Loading</span>
 							)
 					}
 					</div>
