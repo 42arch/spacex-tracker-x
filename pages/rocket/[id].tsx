@@ -1,5 +1,6 @@
 import { ArrowSmLeftIcon } from '@heroicons/react/solid'
 import { GetStaticProps, GetStaticPropsContext } from 'next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import React from 'react'
@@ -9,19 +10,21 @@ import { getOneRocket, getRockets } from '../../utils/api'
 
 export async function getStaticPaths() {
 	const rockets = await getRockets()
-	const paths = rockets.map(r => (`/rocket/${r.id}`))
+	const enPaths = rockets.map(r => (`/rocket/${r.id}`))
+	const cnPaths = rockets.map(r => (`/zh-CN/rocket/${r.id}`))
 	return {
-		paths,
+		paths: [...enPaths, ...cnPaths],
 		fallback: false
 	}
 }
 
-export const getStaticProps: GetStaticProps = async (context: GetStaticPropsContext) => {
+export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
 	try {
-		const id = context.params?.id?.toString()
+		const id = params?.id?.toString()
 		const data: Rocket = await getOneRocket(id)
 		return {
 			props: {
+				...(locale && await serverSideTranslations(locale, ['common'])),
 				error: false,
 				data: data,
 				loading: !data
@@ -30,6 +33,7 @@ export const getStaticProps: GetStaticProps = async (context: GetStaticPropsCont
 	} catch (error) {
 		return {
 			props: {
+				...(locale && await serverSideTranslations(locale, ['common'])),
 				error: true,
 				data: null,
 				loading: false

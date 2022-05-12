@@ -31,8 +31,8 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
 	if(!locale) {
 		locale = 'en'
 	}
-	try {
-		console.log(2333, locale)
+	// try {
+	// 	console.log(2333, locale)
 		const id = params?.id?.toString()
 		const data = await getOneLaunch(id)
 		const rocket = await getOneRocket(data.rocket)
@@ -41,7 +41,6 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
 
 		data.date_utc = format(new Date(data.date_utc), "yyyy-MM-dd HH:mm:ss 'UTC'", {locale: zhCN})
 		return {
-
 			props: {
 				...(await serverSideTranslations(locale, ['common'])),
 				error: false,
@@ -51,18 +50,18 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
 				payloads
 			}
 		}
-	} catch (error) {
-		return {
-			props: {
-				...(await serverSideTranslations(locale, ['common'])),
-				error: true,
-				data: null,
-				rocket: null,
-				launchpad: null,
-				payloads: null
-			}
-		}
-	}
+	// } catch (error) {
+	// 	return {
+	// 		props: {
+	// 			...(await serverSideTranslations(locale, ['common'])),
+	// 			error: true,
+	// 			data: null,
+	// 			rocket: null,
+	// 			launchpad: null,
+	// 			payloads: null
+	// 		}
+	// 	}
+	// }
 }
 
 export default function Launch({ data, rocket, launchpad, payloads, error } : IProp) {
