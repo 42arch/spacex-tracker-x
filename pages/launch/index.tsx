@@ -1,6 +1,5 @@
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import Link from 'next/link'
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import useSWRInfinite from "swr/infinite"
 import LaunchItem from '../../components/Launch/LaunchItem'
 import Layout from '../../components/Layout'
@@ -45,6 +44,7 @@ const LaunchIndex = () => {
 		return fetch(url, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({
 			query,
 			"options": {
+				"select": "id, name, date_utc",
 				"page": page,
 				"limit": 10,
 				"sort": {

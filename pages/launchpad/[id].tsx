@@ -10,9 +10,10 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 export async function getStaticPaths() {
 	const launchpads = await getLaunchpads()
-	const paths = launchpads.map(l => (`/launchpad/${l.id}`))
+	const enPaths = launchpads.map(l => (`/launchpad/${l.id}`))
+	const cnPaths = launchpads.map(l => (`/zh-CN/launchpad/${l.id}`))
 	return {
-		paths,
+		paths: [...enPaths, cnPaths],
 		fallback: false
 	}
 }

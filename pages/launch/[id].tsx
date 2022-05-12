@@ -43,14 +43,6 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
 		payloads = await getPayloads(data.payloads)
 		data.date_utc = format(new Date(data.date_utc), "yyyy-MM-dd HH:mm:ss 'UTC'", {locale: zhCN})
 	} catch (error) {
-		// return {
-		// 	props: {
-		// 		data,
-		// 		rocket,
-		// 		launchpad,
-		// 		payloads
-		// 	}
-		// }
 	}
 	return {
 		props: {
