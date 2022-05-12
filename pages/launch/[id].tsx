@@ -49,7 +49,7 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
 	}
 	return {
 		props: {
-			// ...localeProps,
+			...localeProps,
 			data,
 			rocket,
 			launchpad,
