@@ -186,12 +186,6 @@ export default function Launch({ data, rocket, launchpad, payloads, error } : IP
 						)
 					}
 					</div>
-					<div>
-						<span onClick={() => router.back()} className='cursor-pointer w-20 h-12 leading-normal flex items-center text-center hover:text-white'>
-							<ArrowSmLeftIcon className="h-5 w-5"/>
-							<span className="pl-2"> Back </span>
-						</span>
-					</div>
 				</div>
 			</section>
 	</Layout>

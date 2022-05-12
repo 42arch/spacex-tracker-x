@@ -13,5 +13,10 @@
 			"min": "mins",
 			"sec": "secs"
 		}
+	},
+	"rocket": {
+		"info": "info",
+		"firstFlight": "First Flight",
+		"country": "Country"
 	}
 }

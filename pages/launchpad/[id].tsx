@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import { ArrowSmLeftIcon } from '@heroicons/react/solid'
 import { GetStaticProps, GetStaticPropsContext } from 'next'
 import { useRouter } from 'next/router'
 import React from 'react'
@@ -7,6 +6,7 @@ import Layout from '../../components/Layout'
 import { LaunchPad } from '../../types'
 import { getLaunchpads, getOneLaunchpad } from '../../utils/api'
 import Map from '../../components/Map/LocationMap'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 export async function getStaticPaths() {
 	const launchpads = await getLaunchpads()
@@ -17,12 +17,13 @@ export async function getStaticPaths() {
 	}
 }
 
-export const getStaticProps: GetStaticProps = async (context: GetStaticPropsContext) => {
+export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
 	try {
-		const id = context.params?.id?.toString()
+		const id = params?.id?.toString()
 		const data: LaunchPad = await getOneLaunchpad(id)
 		return {
 			props: {
+				...(locale && await serverSideTranslations(locale, ['common'])),
 				error: false,
 				data: data,
 				loading: !data
@@ -31,6 +32,7 @@ export const getStaticProps: GetStaticProps = async (context: GetStaticPropsCont
 	} catch (error) {
 		return {
 			props: {
+				...(locale && await serverSideTranslations(locale, ['common'])),
 				error: true,
 				data: null,
 				loading: false
@@ -105,10 +107,6 @@ const Launchpad = ({ data, loading }: { data: LaunchPad, loading: boolean }) => 
 								<Map coordinate={{longitude: data.longitude, latitude: data.latitude}}/>
 							</div>
 						</div>
-						<span onClick={() => router.back()} className='cursor-pointer w-20 h-12 leading-normal flex items-center text-center hover:text-white'>
-							<ArrowSmLeftIcon className="h-5 w-5"/>
-							<span className="pl-2"> Back </span>
-						</span>
 					</div>
 				</div>
 			</section>

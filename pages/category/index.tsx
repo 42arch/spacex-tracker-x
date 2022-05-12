@@ -1,11 +1,15 @@
+import { type GetStaticProps } from 'next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useRouter } from 'next/router'
 import React from 'react'
 import CategoryCard from '../../components/CategoryCard'
 import Layout from '../../components/Layout'
 
-export function getStaticProps() {
+export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
 	return {
-		props: {}
+		props: {
+			...(locale && await serverSideTranslations(locale, ['common'])),
+		}
 	}
 }
 
