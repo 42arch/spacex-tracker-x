@@ -1,16 +1,19 @@
 import { MoonIcon, SunIcon, TranslateIcon } from '@heroicons/react/solid'
 import { useTheme } from 'next-themes'
 import { useRouter } from 'next/router'
-import React, { useEffect, useState } from 'react'
+import React, { FunctionComponent, useEffect, useState } from 'react'
 
-const Footer = () => {
+const Footer: FunctionComponent = () => {
 	const router = useRouter()
 	const {theme, setTheme} = useTheme()
-	const [curLocale, setCurLocale] = useState('en')
+	console.log(111, router.locale)
+	const [curLocale, setCurLocale] = useState(router.locale)
 
 	useEffect(() => {
-		router.locale === 'zh-CN' && (setCurLocale('zh-CN'))
-	}, [router.locale])
+		router.push(router.route, router.asPath, {
+			locale: curLocale,
+		})
+	}, [curLocale])
 
 	const onLocaleChange = () => {
 		if(curLocale === 'en') {
@@ -18,9 +21,6 @@ const Footer = () => {
 		} else {
 			setCurLocale('en')
 		}
-		router.push(router.route, router.asPath, {
-			locale: curLocale,
-		})
 	}
 
 	return (
