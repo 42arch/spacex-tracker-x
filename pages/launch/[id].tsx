@@ -1,12 +1,11 @@
 import Layout from "../../components/Layout"
-import { ArrowSmLeftIcon } from '@heroicons/react/solid'
 import Link from "next/link"
 import Image from 'next/image'
 import { LaunchInfo, LaunchPad, Payload, Rocket } from "../../types"
 import { GetStaticProps, GetStaticPropsContext } from "next"
 import { format } from "date-fns"
 import { zhCN } from "date-fns/locale"
-import { getOneLaunch, getOneLaunchpad, getOneRocket, getPayloads } from "../../utils/api"
+import { getLaunchIds, queryOneLaunch } from "../../utils/api"
 import { useRouter } from "next/router"
 import { serverSideTranslations } from "next-i18next/serverSideTranslations"
 
@@ -19,11 +18,11 @@ interface IProp {
 }
 
 export async function getStaticPaths() {
+	const ids = await getLaunchIds()
+	const enPaths = ids.map(id => (`/launch/${id}`))
+	const cnPaths = ids.map(id => (`/zh-CN/launch/${id}`))
 	return {
-		paths: [
-			"/launch/6243ada6af52800c6e919253",
-			"/zh-CN/launch/6243ada6af52800c6e919253"
-		],
+		paths: [...enPaths, ...cnPaths],
 		fallback: true
 	}
 }
@@ -36,25 +35,16 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
 	let rocket = null
 	let launchpad = null
 	let payloads = null
-	let localeProps = null
 	try {
 		const id = params?.id?.toString()
-		data = await getOneLaunch(id)
-		localeProps = await serverSideTranslations(locale, ['common'])
-		console.log(2222, localeProps)
-		// rocket = await getOneRocket(data.rocket)
-		// launchpad = await getOneLaunchpad(data.launchpad)
-		// payloads = await getPayloads(data.payloads)
+		data = await queryOneLaunch(id)
 		data.date_utc = format(new Date(data.date_utc), "yyyy-MM-dd HH:mm:ss 'UTC'", {locale: zhCN})
 	} catch (error) {
 	}
 	return {
 		props: {
 			...(locale && await serverSideTranslations(locale, ['common'])),
-			data,
-			rocket,
-			launchpad,
-			payloads
+			data
 		}
 	}
 }
@@ -109,9 +99,9 @@ export default function Launch({ data, rocket, launchpad, payloads } : IProp) {
 										data.rocket && (
 											<div className="py-4">
 												<p className="block w-24 text-lg">Rocket</p>
-												{/* <Link href={`/rocket/${data.rocket}`} >
-													<a className="block text-gray-400 py-4 hover:text-white underline underline-offset-2">{ rocket.name }</a>
-												</Link> */}
+												<Link href={`/rocket/${data.rocket}`} >
+													<a className="block text-gray-400 py-4 hover:text-white underline underline-offset-2">{ data.rocket.name }</a>
+												</Link>
 											</div>
 										)
 									}
@@ -119,9 +109,9 @@ export default function Launch({ data, rocket, launchpad, payloads } : IProp) {
 										data.launchpad && (
 											<div className="py-4">
 												<p className="block w-24 text-lg">Launchpad</p>
-												{/* <Link href={`/launchpad/${data.launchpad}`}>
-													<a className="block text-gray-400 py-4 hover:text-white underline underline-offset-2">{ launchpad.name }</a>
-												</Link> */}
+												<Link href={`/launchpad/${data.launchpad}`}>
+													<a className="block text-gray-400 py-4 hover:text-white underline underline-offset-2">{ data.launchpad.name }</a>
+												</Link>
 											</div>
 										)
 									}
@@ -130,7 +120,7 @@ export default function Launch({ data, rocket, launchpad, payloads } : IProp) {
 										<p className="block w-24 text-lg">Payloads:</p>
 										<div>
 											{
-												payloads && payloads.map(payload => (
+												data.payloads && data.payloads.map(payload => (
 													<a key={payload.id} className="block text-gray-400 py-4 hover:text-white">{ payload.name }</a>
 												))
 											}

@@ -5,8 +5,14 @@ export type LaunchInfo = {
 	date_utc: string
 	data_local: string
 	window: number
-	launchpad: string
-	rocket: string
+	launchpad: {
+		id: string
+		name: string
+	}
+	rocket: {
+		id: string
+		name: string
+	}
 	flight_number: number
 	success: boolean | null
 	failures: string[]
@@ -18,7 +24,10 @@ export type LaunchInfo = {
 	}
 	ships: string[]
 	crew: string[]
-	payloads: string[]
+	payloads: {
+		id: string
+		name: string
+	}[]
 	links: LaunchLink
 	cores: LaunchCore[]
 }
