@@ -15,7 +15,7 @@ const NavHeader = () => {
 	}
 
 	return (
-			<nav className='p-4 h-16 md:h-20 relative z-[99] shadow md:flex md:items-center md:justify-between'>
+			<nav className='p-4 h-16 md:h-20 relative z-[99] shadow-md md:flex md:items-center md:justify-between'>
 				<div className='flex justify-between items-center'>
 					<Link href='/'>
 						<a className='text-3xl font-DIN'>

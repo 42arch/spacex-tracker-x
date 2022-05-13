@@ -28,12 +28,12 @@ const NextLaunchSection = () => {
 			<div className='h-full flex justify-center items-center'>
 				{
 					nextLaunchData && (
-						<div className='flex flex-col justify-between h-96 w-4/5 md:w-1/2 p-8 bg-slate-600 bg-opacity-50 rounded-lg'>
+						<div className='flex flex-col justify-between h-96 w-4/5 md:w-1/2 p-8 dark:bg-slate-800 bg-slate-400 dark:bg-opacity-40 bg-opacity-50 rounded-lg'>
 							<div className='flex flex-col'>
-								<span className='text-lg text-white'>
+								<span className='text-lg'>
 									{ t('next.title') }
 								</span>
-								<span className='text-3xl pt-3 text-white font-bold'>
+								<span className='text-3xl pt-3 font-bold'>
 									{
 										nextLaunchData.name
 									}
@@ -59,7 +59,7 @@ const NextLaunchSection = () => {
 								</div>
 							</div>
 		
-							<div className='flex flex-col text-white text-sm'>
+							<div className='flex flex-col text-sm'>
 								<span>
 									Launch Time:	Fri 6th May, 5:51 pm
 								</span>

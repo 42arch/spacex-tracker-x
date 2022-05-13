@@ -13,17 +13,13 @@ interface IProps {
 }
 
 const LaunchItem: FunctionComponent<IProps> = ({ data, goDetail }) => {
-
-	// const { data: rocketInfo } = useRocket(data.rocket)
-	// const { data: launchPadInfo} = useLaunchPad(data.launchpad)
-
 	const year = format(new Date(data.date_utc), 'yyyy', {locale: zhCN})
 	const month = format(new Date(data.date_utc), 'MMMM', {locale: zhCN})
 	const fullDate = format(new Date(data.date_utc), "yyyy-MM-dd HH:mm:ss 'UTC'", {locale: zhCN})
 
 	return (
 		<Link href={`/launch/${data.id}`}>
-			<div onClick={ () => { goDetail() } } className='cursor-pointer hover:bg-slate-900 hover:rounded-sm w-full h-28 min-h-[160px] flex items-center'>
+			<div onClick={ () => { goDetail() } } className='cursor-pointer hover:bg-slate-400 dark:hover:bg-slate-900 hover:rounded w-full h-28 min-h-[160px] flex items-center'>
 				<div className='relative w-8 flex justify-center items-center'>
 					<span className={`block w-4 h-4 rounded-full ${ data.upcoming ? 'bg-blue-500' : ( data.success ? 'bg-green-500' : 'bg-red-500' )} z-10`}></span>
 				</div>

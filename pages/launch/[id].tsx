@@ -96,7 +96,7 @@ export default function Launch({ data, rocket, launchpad, payloads } : IProp) {
 										data.rocket && (
 											<div className="py-4">
 												<p className="block w-24 text-lg">Rocket</p>
-												<Link href={`/rocket/${data.rocket}`} >
+												<Link href={`/rocket/${data.rocket.id}`} >
 													<a className="block text-gray-400 py-4 hover:text-white underline underline-offset-2">{ data.rocket.name }</a>
 												</Link>
 											</div>
@@ -106,7 +106,7 @@ export default function Launch({ data, rocket, launchpad, payloads } : IProp) {
 										data.launchpad && (
 											<div className="py-4">
 												<p className="block w-24 text-lg">Launchpad</p>
-												<Link href={`/launchpad/${data.launchpad}`}>
+												<Link href={`/launchpad/${data.launchpad.id}`}>
 													<a className="block text-gray-400 py-4 hover:text-white underline underline-offset-2">{ data.launchpad.name }</a>
 												</Link>
 											</div>

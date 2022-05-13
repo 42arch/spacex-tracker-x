@@ -26,7 +26,7 @@ const Layout = ({ children, home }: any) => {
 				{
 					!home && (
 						<div className='w-full px-6 md:px-20 h-12'>
-							<span onClick={() => router.back()} className='cursor-pointer w-20 h-12 leading-normal flex items-center text-center hover:text-white'>
+							<span onClick={() => router.back()} className='cursor-pointer w-20 h-12 leading-normal flex items-center text-center duration-300 hover:text-slate-700 dark:hover:text-slate-200'>
 								<ArrowSmLeftIcon className="h-5 w-5"/>
 								<span className="pl-2"> Back </span>
 							</span>

@@ -67,14 +67,14 @@ const LaunchIndex = () => {
 					{
 						TABS.map((tab, index) => {
 							return (
-								<button key={tab} onClick={() => { switchTab(index) }} className={`cursor-pointer text-xl hover:bg-slate-900 duration-100 w-28 h-8 md:h-10 leading-8 md:leading-10 text-center rounded-md ${ activeTab === index ? 'bg-slate-900' : '' }`}>
+								<button key={tab} onClick={() => { switchTab(index) }} className={`cursor-pointer text-xl hover:bg-slate-400 dark:hover:bg-slate-900 duration-100 w-28 h-8 md:h-10 leading-8 md:leading-10 text-center rounded-md ${ activeTab === index ? ' bg-slate-400 dark:bg-slate-900' : '' }`}>
 									{ tab }
 								</button>
 							)
 						})
 					}
 				</div>
-				<div className='w-full h-full px-4 md:px-10 py-4 md:py-8 flex flex-col justify-center text-white'>
+				<div className='w-full h-full px-4 md:px-10 py-4 md:py-8 flex flex-col justify-center'>
 					{
 						launchList.map((info, index) => {
 							return (
