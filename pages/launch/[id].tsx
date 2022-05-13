@@ -32,9 +32,6 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
 		locale = 'en'
 	}
 	let data = null
-	let rocket = null
-	let launchpad = null
-	let payloads = null
 	try {
 		const id = params?.id?.toString()
 		data = await queryOneLaunch(id)

@@ -18,10 +18,10 @@ export const queryOneLaunch = async (id: string | undefined) => {
 	const res = await fetch(`${baseUrl}/launches/query`, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(
 		{
 			"query":{
-				"id": id
+				"_id": id
 			},
 			"options":{
-				"select": "id, name, date_utc, upcoming, success, links",
+				// "select": "id, name, date_utc, upcoming, success, links",
 				"limit":1,
 				"populate": [
 					{
