@@ -1,3 +1,4 @@
+import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import React, { useEffect, useState } from 'react'
 import useSWRInfinite from "swr/infinite"
@@ -5,7 +6,7 @@ import LaunchItem from '../../components/Launch/LaunchItem'
 import Layout from '../../components/Layout'
 import { LaunchInfo } from '../../types'
 
-const TABS = ['All', 'Upcoming', 'Success', 'Fail']
+const TABS = ['all', 'upcoming', 'success', 'fail']
 const launchList: LaunchInfo[] = []
 
 export async function getStaticProps({ locale }: {locale: any}) {
@@ -17,6 +18,7 @@ export async function getStaticProps({ locale }: {locale: any}) {
 }
 
 const LaunchIndex = () => {
+	const { t } = useTranslation('common')
 	const [activeTab, setActiveTab] = useState(0)
 	const switchTab = (index: number) => {
 		launchList.length = 0
@@ -29,13 +31,13 @@ const LaunchIndex = () => {
 	const fetcher = (url: string, page: number, status: string) => {
 		const query: { upcoming?: boolean, success?: boolean } = {}
 		switch (status) {
-			case 'Upcoming':
+			case 'upcoming':
 				query.upcoming = true
 				break
-			case 'Success':
+			case 'success':
 				query.success = true
 				break
-			case 'Fail':
+			case 'fail':
 				query.success = false
 				break
 			default:
@@ -68,7 +70,7 @@ const LaunchIndex = () => {
 						TABS.map((tab, index) => {
 							return (
 								<button key={tab} onClick={() => { switchTab(index) }} className={`cursor-pointer text-xl hover:bg-slate-400 dark:hover:bg-slate-900 duration-100 w-28 h-8 md:h-10 leading-8 md:leading-10 text-center rounded-md ${ activeTab === index ? ' bg-slate-400 dark:bg-slate-900' : '' }`}>
-									{ tab }
+									{ t(`status.${tab}`) }
 								</button>
 							)
 						})

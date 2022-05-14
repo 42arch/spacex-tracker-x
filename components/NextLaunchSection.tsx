@@ -1,17 +1,23 @@
-import React, { useEffect, useState } from 'react'
-import { ArrowDownIcon } from '@heroicons/react/solid'
+import React, { FunctionComponent, useEffect, useState } from 'react'
+import { ArrowDownIcon, ExternalLinkIcon } from '@heroicons/react/solid'
 import { useNextLaunch } from '../hooks/useNextLaunch'
 import { formatDuration, intervalToDuration, Duration, differenceInDays } from 'date-fns'
 import { useTranslation } from 'next-i18next'
+import { LaunchInfo } from '../types'
+import Button from './Button'
+import Link from 'next/link'
 
-const NextLaunchSection = () => {
+interface IProps {
+	data: LaunchInfo
+}
+
+const NextLaunchSection: FunctionComponent<IProps> = ({ data }) => {
 	const { t } = useTranslation('common')
-	const { data: nextLaunchData, error, loading } = useNextLaunch()
 	const [ countdown, setCountdown ] = useState<Duration>({})
 
 	useEffect(() => {
-		if(nextLaunchData) {
-			const { date_utc } = nextLaunchData
+		if(data) {
+			const { date_utc } = data
 			let timer = setInterval(() => {
 				let now = new Date()
 				let days = differenceInDays(new Date(date_utc), now)
@@ -21,25 +27,25 @@ const NextLaunchSection = () => {
 			}, 1000)
 			return () => clearInterval(timer)
 		}
-	}, [nextLaunchData])
+	}, [data])
 
 	return (
-		<section id='home' className='block relative w-full h-screen bg-black bg-bg1 bg-no-repeat bg-cover bg-center'>
+		<section id='home' className='block relative w-full h-screen bg-black bg-bg3 bg-no-repeat bg-cover bg-center'>
 			<div className='h-full flex justify-center items-center'>
 				{
-					nextLaunchData && (
+					data && (
 						<div className='flex flex-col justify-between h-96 w-4/5 md:w-1/2 p-8 dark:bg-slate-800 bg-slate-400 dark:bg-opacity-40 bg-opacity-50 rounded-lg'>
 							<div className='flex flex-col'>
 								<span className='text-lg'>
 									{ t('next.title') }
 								</span>
-								<span className='text-3xl pt-3 font-bold'>
-									{
-										nextLaunchData.name
-									}
-								</span>
+								<Link href={`/launch/${data.id}`}>
+									<p className='cursor-pointer text-3xl pt-3 font-bold flex'>
+										{ data.name }
+										<ExternalLinkIcon className='h-4 w-4'/>
+									</p>
+								</Link>
 							</div>
-		
 							<div className='flex h-24 w-full justify-evenly'>
 								<div className='flex flex-col w-14'>
 									<span className='text-3xl text-left'>{ countdown.days }</span>
@@ -58,16 +64,15 @@ const NextLaunchSection = () => {
 									<span className='pt-1'>{ t('next.time.sec') }</span>
 								</div>
 							</div>
-		
-							<div className='flex flex-col text-sm'>
+							<div className='flex flex-col text-base'>
 								<span>
-									Launch Time:	Fri 6th May, 5:51 pm
+									{ t('next.info.launchTime') }: { data.date_utc }
 								</span>
 								<span>
-									Launch Site:	KSC LC 39A (Florida)
+									{ t('next.info.launchSite') }: { data.launchpad.name }
 								</span>
 								<span>
-									Rocket:	Falcon 9
+									{ t('next.info.rocket') }: { data.rocket.name }
 								</span>
 							</div>
 						</div>

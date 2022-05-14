@@ -1,20 +1,22 @@
-import type { NextPage } from 'next'
+import type { InferGetStaticPropsType, NextPage } from 'next'
 import Head from 'next/head'
 import { serverSideTranslations } from "next-i18next/serverSideTranslations"
 import NextLaunchSection from '../components/NextLaunchSection'
 import Layout, { siteTitle } from '../components/Layout'
-import CategorySection from '../components/CategorySection'
-import LaunchRecordSection from '../components/LaunchRecord'
+import { getNextLaunch, queryOneLaunch } from '../utils/api'
 
 export async function getStaticProps({ locale }: {locale: any}) {
+	const nextLaunch = await getNextLaunch()
+	const moreInfo = await queryOneLaunch(nextLaunch.id)
 	return {
 		props: {
-			...(await serverSideTranslations(locale, ['common']))
+			...(await serverSideTranslations(locale, ['common'])),
+			data: moreInfo
 		}
 	}
 }
 
-const Home: NextPage = () => {
+const Home = ({ data } : InferGetStaticPropsType<typeof getStaticProps>) => {
 	return (
 		<Layout home>
 			<Head>
@@ -22,7 +24,7 @@ const Home: NextPage = () => {
 			</Head>
 
 			<div className="flex flex-col relative">
-				<NextLaunchSection/>
+				<NextLaunchSection data={data}/>
 			</div>
 		</Layout>
 	)

@@ -1,5 +1,6 @@
 import { ArrowSmLeftIcon } from '@heroicons/react/solid'
 import { GetStaticProps, GetStaticPropsContext } from 'next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
@@ -7,11 +8,12 @@ import Layout from '../../components/Layout'
 import { Rocket } from '../../types'
 import { getRockets } from '../../utils/api'
 
-export const getStaticProps: GetStaticProps = async (context: GetStaticPropsContext) => {
+export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
 	try {
 		const data: Rocket[] = await getRockets()
 		return {
 			props: {
+				...(locale && await serverSideTranslations(locale, ['common'])),
 				error: false,
 				data: data,
 				loading: !data
@@ -20,6 +22,7 @@ export const getStaticProps: GetStaticProps = async (context: GetStaticPropsCont
 	} catch (error) {
 		return {
 			props: {
+				...(locale && await serverSideTranslations(locale, ['common'])),
 				error: true,
 				data: null,
 				loading: false
@@ -32,7 +35,7 @@ const RocketIndex = ({ data }: { data: Rocket[] }) => {
 	const router = useRouter()
 	return (
 		<Layout>
-			<section className='w-full h-full relative pt-4 pb-18 px-2 md:px-10 flex flex-col justify-center'>
+			<section className='w-full h-full relative pt-4 pb-18 px-2 md:px-20 flex flex-col justify-center'>
 				<div className='py-8 pl-4 flex flex-col items-center md:items-start'>
 					{
 						data && (
@@ -46,10 +49,6 @@ const RocketIndex = ({ data }: { data: Rocket[] }) => {
 						)
 					}
 				</div>
-				<span onClick={() => router.back()} className='cursor-pointer w-20 h-12 leading-normal flex items-center text-center hover:text-white'>
-					<ArrowSmLeftIcon className="h-5 w-5"/>
-					<span className="pl-2"> Back </span>
-				</span>
 			</section>
 		</Layout>
 	)

@@ -3,7 +3,14 @@
 		"home": "主页",
 		"mission": "任务",
 		"category": "分类",
-		"iss": "ISS"
+		"iss": "ISS",
+		"back": "返回"
+	},
+	"status": {
+		"all": "全部",
+		"upcoming": "即将",
+		"success": "成功",
+		"fail": "失败"
 	},
 	"test": "test",
 	"next": {
@@ -13,6 +20,11 @@
 			"hour": "小时",
 			"min": "分",
 			"sec": "秒"
+		},
+		"info": {
+			"launchTime": "发射时间",
+			"launchSite": "发射地点",
+			"rocket": "火箭"
 		}
 	}
 }

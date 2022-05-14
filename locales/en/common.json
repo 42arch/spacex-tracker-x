@@ -3,7 +3,14 @@
 		"home": "Home",
 		"mission": "Mission",
 		"category": "Category",
-		"iss": "ISS"
+		"iss": "ISS",
+		"back": "back"
+	},
+	"status": {
+		"all": "All",
+		"upcoming": "Upcoming",
+		"success": "Success",
+		"fail": "Fail"
 	},
 	"next": {
 		"title": "Next Launch",
@@ -12,6 +19,11 @@
 			"hour": "hours",
 			"min": "mins",
 			"sec": "secs"
+		},
+		"info": {
+			"launchTime": "Launch Time",
+			"launchSite": "Launch Site",
+			"rocket": "Rocket"
 		}
 	},
 	"rocket": {

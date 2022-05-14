@@ -21,7 +21,6 @@ export const queryOneLaunch = async (id: string | undefined) => {
 				"_id": id
 			},
 			"options":{
-				// "select": "id, name, date_utc, upcoming, success, links",
 				"limit":1,
 				"populate": [
 					{
@@ -52,6 +51,12 @@ export const queryOneLaunch = async (id: string | undefined) => {
 
 export const getOneLaunch = async (id: string | undefined) => {
 	const res = await fetch(`${baseUrl}/launches/${id}`)
+	const data: LaunchInfo = await res.json()
+	return data
+}
+
+export const getNextLaunch = async () => {
+	const res = await fetch(`${baseUrl}/launches/next`)
 	const data: LaunchInfo = await res.json()
 	return data
 }

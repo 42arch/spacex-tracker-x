@@ -1,11 +1,10 @@
 import React, { FunctionComponent } from 'react'
 import Image from 'next/image'
 import { LaunchInfo } from '../../types'
-import { useRocket } from '../../hooks/useRocket'
-import { useLaunchPad } from '../../hooks/useLaunchPad'
 import { format } from 'date-fns'
 import { enUS, zhCN } from 'date-fns/locale'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 interface IProps {
 	data: LaunchInfo,
@@ -13,9 +12,10 @@ interface IProps {
 }
 
 const LaunchItem: FunctionComponent<IProps> = ({ data, goDetail }) => {
-	const year = format(new Date(data.date_utc), 'yyyy', {locale: zhCN})
-	const month = format(new Date(data.date_utc), 'MMMM', {locale: zhCN})
-	const fullDate = format(new Date(data.date_utc), "yyyy-MM-dd HH:mm:ss 'UTC'", {locale: zhCN})
+	const router = useRouter()
+	const year = format(new Date(data.date_utc), 'yyyy', {locale: router.locale === 'zh-CN' ? zhCN : enUS})
+	const month = format(new Date(data.date_utc), 'MMMM', {locale: router.locale === 'zh-CN' ? zhCN : enUS})
+	const fullDate = format(new Date(data.date_utc), "yyyy-MM-dd HH:mm:ss 'UTC'", {locale: router.locale === 'zh-CN' ? zhCN : enUS})
 
 	return (
 		<Link href={`/launch/${data.id}`}>
