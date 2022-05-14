@@ -9,24 +9,17 @@ import { Rocket } from '../../types'
 import { getRockets } from '../../utils/api'
 
 export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
+	let data = null
 	try {
-		const data: Rocket[] = await getRockets()
-		return {
-			props: {
-				...(locale && await serverSideTranslations(locale, ['common'])),
-				error: false,
-				data: data,
-				loading: !data
-			}
-		}
+		data = await getRockets() as Rocket[]
+
 	} catch (error) {
-		return {
-			props: {
-				...(locale && await serverSideTranslations(locale, ['common'])),
-				error: true,
-				data: null,
-				loading: false
-			}
+
+	}
+	return {
+		props: {
+			...(locale && await serverSideTranslations(locale, ['common'])),
+			data
 		}
 	}
 }

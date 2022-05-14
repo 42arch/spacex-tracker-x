@@ -19,7 +19,7 @@ const CategoryIndex = () => {
 		<Layout>
 			<section className='w-full h-main py-6 md:py-20 px-10 flex flex-wrap justify-evenly items-center md:grid md:grid-cols-4 md:gap-10'>
 				<CategoryCard jumpTo={() => { router.push('/rocket') }} bgPath='/images/bg-rocket.jpg' name='rocket'></CategoryCard>
-				<CategoryCard jumpTo={() => { router.push('/rocket') }} bgPath='/images/bg-launchpad.png' name='launchpad'></CategoryCard>
+				<CategoryCard jumpTo={() => { router.push('/launchpad') }} bgPath='/images/bg-launchpad.png' name='launchpad'></CategoryCard>
 				<CategoryCard jumpTo={() => { router.push('/rocket') }} bgPath='/images/bg-launchpad.png' name='payload'></CategoryCard>
 				<CategoryCard jumpTo={() => { router.push('/rocket') }} bgPath='/images/bg-launchpad.png' name='ship'></CategoryCard>
 				<CategoryCard jumpTo={() => { router.push('/rocket') }} bgPath='/images/bg-crew.jpg' name='crew'></CategoryCard>

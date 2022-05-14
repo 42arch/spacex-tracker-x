@@ -1,4 +1,5 @@
 import { ArrowSmLeftIcon } from '@heroicons/react/solid'
+import { useTranslation } from 'next-i18next'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import React from 'react'
@@ -8,6 +9,7 @@ import NavHeader from './NavHeader'
 export const siteTitle = 'SpaceX Tracker X'
 
 const Layout = ({ children, home }: any) => {
+	const { t } = useTranslation()
 	const router = useRouter()
 	
 	return (
@@ -28,7 +30,7 @@ const Layout = ({ children, home }: any) => {
 						<div className='w-full px-6 md:px-20 h-12'>
 							<span onClick={() => router.back()} className='cursor-pointer w-20 h-12 leading-normal flex items-center text-center duration-300 hover:text-slate-700 dark:hover:text-slate-200'>
 								<ArrowSmLeftIcon className="h-5 w-5"/>
-								<span className="pl-2"> Back </span>
+								<span className="pl-2"> { t('nav.back') } </span>
 							</span>
 						</div>
 					)
