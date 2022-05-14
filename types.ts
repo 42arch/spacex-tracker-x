@@ -163,7 +163,7 @@ export type Payload = {
 	name: string
 	type: string
 	reused: boolean
-	launch: string
+	launch: LaunchInfo
 	customers: string[]
 	dragon: Dragon
 	norad_ids: string[]
@@ -175,26 +175,35 @@ export type Payload = {
 	reference_system: string
 	regime: string
 	longitude: number | null
-	semi_major_axis_km:  number | null,
-	eccentricity: number | null,
-	periapsis_km: number | null,
-	apoapsis_km: number | null,
-	inclination_deg: number | null,
-	period_min: number | null,
-	lifespan_years: number | null,
-	epoch: number | null,
-	mean_motion: number | null,
-	raan: number | null,
-	arg_of_pericenter: number | null,
-	mean_anomaly: number | null,
+	semi_major_axis_km:  number | null
+	eccentricity: number | null
+	periapsis_km: number | null
+	apoapsis_km: number | null
+	inclination_deg: number | null
+	period_min: number | null
+	lifespan_years: number | null
+	epoch: number | null
+	mean_motion: number | null
+	raan: number | null
+	arg_of_pericenter: number | null
+	mean_anomaly: number | null
 }
 
 type Dragon = {
-	capsule: null,
-	mass_returned_kg: null,
-	mass_returned_lbs: null,
-	flight_time_sec: null,
-	manifest: null,
-	water_landing: null,
+	capsule: {
+		id: string
+		status: string
+		serial: string
+		reuse_count: number
+		water_landings: number
+		land_landings: number
+		last_update: string
+		launches: LaunchInfo[]
+	} | null,
+	mass_returned_kg: number | null
+	mass_returned_lbs: number | null
+	flight_time_sec: null
+	manifest: null
+	water_landing: null
 	land_landing: null
 }

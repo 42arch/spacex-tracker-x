@@ -7,12 +7,74 @@ export const getLaunchIds = async () => {
 		"options": {
 			"select": "id",
 			"pagination": false
-		}}) 
+		}})
 	})
 	const data: LaunchInfo[] = (await res.json()).docs
 	const ids = data.map(i => (i.id))
 	return ids
 }
+
+export const getPayloadIds = async () => {
+	const res = await fetch(`${baseUrl}/payloads/query`, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({ 
+		"options": {
+			"select": "id",
+			"pagination": false
+		}})
+	})
+	const data: Payload[] = (await res.json()).docs
+	const ids = data.map(i => (i.id))
+	return ids
+}
+
+export const getOnePayload = async (id: string | undefined) => {
+	const res = await fetch(`${baseUrl}/payloads/${id}`)
+	const data: Payload = await res.json()
+	return data
+}
+
+export const queryOnePayload = async (id: string | undefined) => {
+	const res = await fetch(`${baseUrl}/payloads/query`, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(
+		{
+			"query":{
+				"_id": id
+			},
+			"options":{
+				"limit":1,
+				"populate": [
+					{
+						"path": "dragon",
+						"populate": {
+							"path": "capsule",
+							"select": {
+								"status": 1,
+								"serial": 1,
+								"reuse_count": 1,
+								"water_landings": 1,
+								"land_landings": 1,
+								"last_update": 1
+							},
+							"populate": {
+								"path": "launches",
+								"select": {
+										"name": 1
+								}
+							}
+						}
+					},
+					{
+						"path": "launch",
+						"select": {
+							"name": 1
+						}
+					}
+				]
+			}
+		})
+	})
+	const data: Payload[] = (await res.json()).docs
+	return data[0]
+}
+
 
 export const queryOneLaunch = async (id: string | undefined) => {
 	const res = await fetch(`${baseUrl}/launches/query`, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(

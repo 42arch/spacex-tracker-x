@@ -46,7 +46,7 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
 	}
 }
 
-export default function Launch({ data, rocket, launchpad, payloads } : IProp) {
+export default function Launch({ data } : IProp) {
 	const router = useRouter()
 	const openLink = (url: string) => {
 		window.open(url, '__blank')
@@ -97,7 +97,7 @@ export default function Launch({ data, rocket, launchpad, payloads } : IProp) {
 											<div className="py-4">
 												<p className="block w-24 text-lg">Rocket</p>
 												<Link href={`/rocket/${data.rocket.id}`} >
-													<a className="block text-gray-400 py-4 hover:text-white underline underline-offset-2">{ data.rocket.name }</a>
+													<a className="block text-gray-400 px-2 py-4 hover:text-white underline underline-offset-2">{ data.rocket.name }</a>
 												</Link>
 											</div>
 										)
@@ -107,7 +107,7 @@ export default function Launch({ data, rocket, launchpad, payloads } : IProp) {
 											<div className="py-4">
 												<p className="block w-24 text-lg">Launchpad</p>
 												<Link href={`/launchpad/${data.launchpad.id}`}>
-													<a className="block text-gray-400 py-4 hover:text-white underline underline-offset-2">{ data.launchpad.name }</a>
+													<a className="block text-gray-400 px-2 py-4 hover:text-white underline underline-offset-2">{ data.launchpad.name }</a>
 												</Link>
 											</div>
 										)
@@ -118,7 +118,9 @@ export default function Launch({ data, rocket, launchpad, payloads } : IProp) {
 										<div>
 											{
 												data.payloads && data.payloads.map(payload => (
-													<a key={payload.id} className="block text-gray-400 py-4 hover:text-white">{ payload.name }</a>
+													<Link key={payload.id} href={`/payload/${payload.id}`}>
+														<a className="block text-gray-400 px-2 py-4 hover:text-white underline underline-offset-2">{ payload.name }</a>
+													</Link>
 												))
 											}
 										</div>
