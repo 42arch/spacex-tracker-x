@@ -23,7 +23,7 @@ const Home = ({ data } : InferGetStaticPropsType<typeof getStaticProps>) => {
 				<title>{ siteTitle }</title>
 			</Head>
 
-			<div className="flex flex-col relative">
+			<div className="flex flex-col h-full relative">
 				<NextLaunchSection data={data}/>
 			</div>
 		</Layout>

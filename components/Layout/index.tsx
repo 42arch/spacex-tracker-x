@@ -23,7 +23,7 @@ const Layout = ({ children, home }: any) => {
 				<meta name="og:title" content={siteTitle} />
 			</Head>
 			<NavHeader />
-			<main className='font-DIN min-h-main'>
+			<main className={`font-DIN ${ !home ? 'min-h-main' : 'h-main_footer min-h-main_footer'}`}>
 				{ children }
 				{
 					!home && (

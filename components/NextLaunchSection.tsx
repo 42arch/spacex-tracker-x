@@ -30,7 +30,7 @@ const NextLaunchSection: FunctionComponent<IProps> = ({ data }) => {
 	}, [data])
 
 	return (
-		<section id='home' className='block relative w-full h-screen bg-black bg-bg3 bg-no-repeat bg-cover bg-center'>
+		<section id='home' className='block relative w-full h-full bg-black bg-bg3 bg-no-repeat bg-cover bg-center'>
 			<div className='h-full flex justify-center items-center'>
 				{
 					data && (

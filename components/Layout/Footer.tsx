@@ -43,7 +43,6 @@ const Footer: FunctionComponent = () => {
 					{ curLocale === 'en' ? <TranslateIcon/> : <TranslateIcon className=' rotate'/> }
 				</button>
 			</div>
-			
 			<span className='block w-full'>
 				This website is not affiliated with SpaceX. All the data is from 
 				<a className=' underline px-1' href="https://github.com/r-spacex/SpaceX-API"> r/spacex’s API </a>

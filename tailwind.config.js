@@ -11,10 +11,12 @@ module.exports = {
 	theme: {
 		extend: {
 			height: {
-				main: 'calc(100% - 5rem)'
+				main: 'calc(100% - 5rem)',
+				main_footer: 'calc(100% - 5rem - 7rem)'
 			},
 			minHeight: {
-				main: 'calc(100% - 5rem)'
+				main: 'calc(100% - 5rem)',
+				main_footer: 'calc(100% - 5rem - 7rem)'
 			},
 			fontFamily: {
 				'DIN': ['DIN'],
