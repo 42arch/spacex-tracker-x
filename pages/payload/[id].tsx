@@ -21,8 +21,6 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
 	try {
 		const id = params?.id?.toString()
 		data = await queryOnePayload(id) as Payload
-		console.log(333, data)
-
 	} catch (error) {
 	}
 	return {

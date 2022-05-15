@@ -35,7 +35,6 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
 	try {
 		const id = params?.id?.toString()
 		data = await queryOneLaunch(id)
-		console.log(333, data)
 		data.date_utc = format(new Date(data.date_utc), "yyyy-MM-dd HH:mm:ss 'UTC'", {locale: zhCN})
 	} catch (error) {
 	}

@@ -4,7 +4,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import React from 'react'
 import Layout from '../../components/Layout'
 import { Ship } from '../../types'
-import { getAllShips, queryOneShip,  } from '../../utils/api'
+import { getAllShips, queryOneShip } from '../../utils/api'
 import Link from 'next/link'
 
 export async function getStaticPaths() {
