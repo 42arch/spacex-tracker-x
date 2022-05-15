@@ -23,11 +23,8 @@ export type LaunchInfo = {
 		recovered: boolean
 	}
 	ships: string[]
-	crew: string[]
-	payloads: {
-		id: string
-		name: string
-	}[]
+	crew: Crew[]
+	payloads: Payload[]
 	links: LaunchLink
 	cores: LaunchCore[]
 }
@@ -206,4 +203,14 @@ type Dragon = {
 	manifest: null
 	water_landing: null
 	land_landing: null
+}
+
+export type Crew = {
+	id: string
+	name: string
+	agency: string
+	image: string
+	wikipedia: string
+	launches: LaunchInfo[]
+	status: string
 }

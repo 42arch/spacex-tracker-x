@@ -35,6 +35,7 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
 	try {
 		const id = params?.id?.toString()
 		data = await queryOneLaunch(id)
+		console.log(333, data)
 		data.date_utc = format(new Date(data.date_utc), "yyyy-MM-dd HH:mm:ss 'UTC'", {locale: zhCN})
 	} catch (error) {
 	}
@@ -71,15 +72,13 @@ export default function Launch({ data } : IProp) {
 									</div>
 									<div className="h-full flex flex-col justify-center py-4 md:py-0 px-2 md:px-16">
 										<span className="py-4 text-3xl md:text-center">
-											{
-												data.name
-											}
+											{ data.name }
 										</span>
 										<p className="py-2">{ data.date_utc }</p>
 										<p className={`py-2 uppercase ${ data.upcoming ? 'text-blue-500' : ( data.success ? 'text-green-500' : 'text-red-500' )}`}>
 											{ data.success ? 'success' : (data.upcoming ? 'upcoming' : 'fail') }
 										</p>
-										<button onClick={() => { window.open(data.links.webcast, '__blank') }} className="border-2 border-gray-400 text-gray-400 hover:text-red-500 hover:border-red-500 duration-100 rounded h-10">
+										<button onClick={() => { window.open(data.links.webcast, '__blank') }} className="border-2 border-gray-400 text-gray-400 hover:text-orange-500 hover:border-orange-500 duration-100 rounded h-10">
 											Watch Webcast
 										</button>
 									</div>
@@ -97,7 +96,7 @@ export default function Launch({ data } : IProp) {
 											<div className="py-4">
 												<p className="block w-24 text-lg">Rocket</p>
 												<Link href={`/rocket/${data.rocket.id}`} >
-													<a className="block text-gray-400 px-2 py-4 hover:text-white underline underline-offset-2">{ data.rocket.name }</a>
+													<button className="block text-gray-400 px-2 py-4 hover:text-white underline underline-offset-2">{ data.rocket.name }</button>
 												</Link>
 											</div>
 										)
@@ -107,19 +106,30 @@ export default function Launch({ data } : IProp) {
 											<div className="py-4">
 												<p className="block w-24 text-lg">Launchpad</p>
 												<Link href={`/launchpad/${data.launchpad.id}`}>
-													<a className="block text-gray-400 px-2 py-4 hover:text-white underline underline-offset-2">{ data.launchpad.name }</a>
+													<button className="block text-gray-400 px-2 py-4 hover:text-white underline underline-offset-2">{ data.launchpad.name }</button>
 												</Link>
 											</div>
 										)
 									}
-
 									<div className="py-4">
-										<p className="block w-24 text-lg">Payloads:</p>
+										<p className="block w-24 text-lg">Payloads</p>
 										<div>
 											{
 												data.payloads && data.payloads.map(payload => (
 													<Link key={payload.id} href={`/payload/${payload.id}`}>
-														<a className="block text-gray-400 px-2 py-4 hover:text-white underline underline-offset-2">{ payload.name }</a>
+														<button className="block text-gray-400 px-2 py-4 hover:text-white underline underline-offset-2">{ payload.name }</button>
+													</Link>
+												))
+											}
+										</div>
+									</div>
+									<div className="py-4">
+										<p className="block w-24 text-lg">Crews</p>
+										<div>
+											{
+												data.crew && data.crew.map(crew => (
+													<Link key={crew.id} href={`/crew/${crew.id}`}>
+														<button className="block text-gray-400 px-2 py-4 hover:text-white underline underline-offset-2">{ crew.name }</button>
 													</Link>
 												))
 											}
@@ -127,7 +137,7 @@ export default function Launch({ data } : IProp) {
 									</div>
 									<div className="py-4">
 										<p className="block w-24 text-lg">Links:</p>
-										<div className="flex py-4">
+										<div className="flex py-4 px-2">
 											{
 												data.links.presskit && (
 													<button onClick={ () => openLink(data.links.presskit) } className="link-btn">

@@ -82,7 +82,7 @@ export default function RocketPage({ data }: { data: Payload }) {
 							)
 						}
 						<div className="py-4">
-							<p className="block text-lg">Info</p>
+							<p className="block text-lg">Basic Info</p>
 							<div className='px-2 max-w-sm md:max-w-xl'>
 								<div className='py-1 flex'>
 									<a className="rocket-info-key">Reused: </a>
@@ -103,7 +103,7 @@ export default function RocketPage({ data }: { data: Payload }) {
 							</div>
 						</div>
 						<div className="py-4">
-							<p className="block text-lg">Orbit</p>
+							<p className="block text-lg">Orbit Info</p>
 							<div className='px-2 max-w-sm md:max-w-xl'>
 								<div className='py-1 flex'>
 									<a className="rocket-info-key">Orbit: </a>
