@@ -22,7 +22,7 @@ export type LaunchInfo = {
 		recovery_attempt: boolean
 		recovered: boolean
 	}
-	ships: string[]
+	ships: Ship[]
 	crew: Crew[]
 	payloads: Payload[]
 	links: LaunchLink
@@ -213,4 +213,30 @@ export type Crew = {
 	wikipedia: string
 	launches: LaunchInfo[]
 	status: string
+}
+
+export type Ship = {
+	id: string
+	name: string
+	active: boolean
+	image: string
+	latitude: number | null
+	longitude: number | null
+	course_deg: number | null
+	speed_kn: number | null
+	status: string | null
+	home_port: string
+	year_built: number
+	mass_lbs: number
+	mass_kg: number
+	class: number
+	abs: number
+	mmsi: number
+	imo: number
+	roles: string[]
+	type: string
+	model: string | null
+	legacy_id: string | number
+	last_ais_update: string | null
+	launches: LaunchInfo[]
 }

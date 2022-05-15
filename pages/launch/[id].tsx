@@ -123,18 +123,38 @@ export default function Launch({ data } : IProp) {
 											}
 										</div>
 									</div>
-									<div className="py-4">
-										<p className="block w-24 text-lg">Crews</p>
-										<div>
-											{
-												data.crew && data.crew.map(crew => (
-													<Link key={crew.id} href={`/crew/${crew.id}`}>
-														<button className="block text-gray-400 px-2 py-4 hover:text-white underline underline-offset-2">{ crew.name }</button>
-													</Link>
-												))
-											}
-										</div>
-									</div>
+									{
+										data.crew && (
+											<div className="py-4">
+												<p className="block w-24 text-lg">Crews</p>
+												<div>
+													{
+														data.crew && data.crew.map(crew => (
+															<Link key={crew.id} href={`/crew/${crew.id}`}>
+																<button className="block text-gray-400 px-2 py-4 hover:text-white underline underline-offset-2">{ crew.name }</button>
+															</Link>
+														))
+													}
+												</div>
+											</div>
+										)
+									}
+									{
+										data.ships && (
+											<div className="py-4">
+												<p className="block w-24 text-lg">Ships</p>
+												<div>
+													{
+														data.ships && data.ships.map(ship => (
+															<Link key={ship.id} href={`/ship/${ship.id}`}>
+																<button className="block text-gray-400 px-2 py-4 hover:text-white underline underline-offset-2">{ ship.name }</button>
+															</Link>
+														))
+													}
+												</div>
+											</div>
+										)
+									}
 									<div className="py-4">
 										<p className="block w-24 text-lg">Links:</p>
 										<div className="flex py-4 px-2">

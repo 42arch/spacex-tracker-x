@@ -1,4 +1,4 @@
-import { Core, Crew, LaunchInfo, LaunchPad, Payload, Rocket } from "../types"
+import { Core, Crew, LaunchInfo, LaunchPad, Payload, Rocket, Ship } from "../types"
 
 const baseUrl = 'https://api.spacexdata.com/v4'
 
@@ -108,6 +108,12 @@ export const queryOneLaunch = async (id: string | undefined) => {
 						"select": {
 							"name": 1
 						}
+					},
+					{
+						"path": "ships",
+						"select": {
+							"name": 1
+						}
 					}
 				]
 			}
@@ -201,5 +207,34 @@ export const queryOneCrew = async (id: string | undefined) => {
 		})
 	})
 	const data: Crew[] = (await res.json()).docs
+	return data[0]
+}
+
+export const getAllShips = async () => {
+	const res = await fetch(`${baseUrl}/ships`)
+	const data: Ship[] = await res.json()
+	return data
+}
+
+export const queryOneShip = async (id: string | undefined) => {
+	const res = await fetch(`${baseUrl}/ships/query`, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(
+		{
+			"query":{
+				"_id": id
+			},
+			"options":{
+				"limit":1,
+				"populate": [
+					{
+						"path": "launches",
+						"select": {
+							"name": 1
+						}
+					}
+				]
+			}
+		})
+	})
+	const data: Ship[] = (await res.json()).docs
 	return data[0]
 }

@@ -59,11 +59,11 @@ export default function RocketPage({ data, loading }: { data: Rocket, loading: b
 								</div>
 							</div>
 							<div className="py-4 md:py-8">
-								<p className="block text text-lg py-4">{ data.description || 'null' }</p>
+								<p className="block text text-lg py-4">{ data.description }</p>
 							</div>
 							<div className="py-4">
 								<p className="block text-lg">Info</p>
-								<div className='px-2 max-w-sm md:max-w-xs'>
+								<div className='px-2 max-w-sm md:max-w-xl'>
 									<div className='py-1 flex'>
 										<a className="rocket-info-key">First Flight: </a>
 										<a className="block text-gray-400">{ data.first_flight }</a>

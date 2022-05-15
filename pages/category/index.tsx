@@ -22,8 +22,8 @@ const CategoryIndex = () => {
 				<CategoryCard jumpTo={() => { router.push('/launchpad') }} bgPath='/images/bg-launchpad.png' name='launchpad'></CategoryCard>
 				<CategoryCard jumpTo={() => { router.push('/rocket') }} bgPath='/images/bg-launchpad.png' name='payload'></CategoryCard>
 				<CategoryCard jumpTo={() => { router.push('/rocket') }} bgPath='/images/bg-launchpad.png' name='ship'></CategoryCard>
-				<CategoryCard jumpTo={() => { router.push('/rocket') }} bgPath='/images/bg-crew.jpg' name='crew'></CategoryCard>
-				<CategoryCard jumpTo={() => { router.push('/rocket') }} bgPath='/images/bg-crew.jpg' name='landpad'></CategoryCard>
+				<CategoryCard jumpTo={() => { router.push('/crew') }} bgPath='/images/bg-crew.png' name='crew'></CategoryCard>
+				<CategoryCard jumpTo={() => { router.push('/ship') }} bgPath='/images/bg-ship.jpg' name='ship'></CategoryCard>
 			</section>
 		</Layout>
 	)
