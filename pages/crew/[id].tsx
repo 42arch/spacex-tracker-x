@@ -5,6 +5,7 @@ import React from 'react'
 import Layout from '../../components/Layout'
 import { Crew, Payload } from '../../types'
 import { getAllCrews, getPayloadIds, queryOneCrew, queryOnePayload } from '../../utils/api'
+import Link from 'next/link'
 
 export async function getStaticPaths() {
 	const crews = await getAllCrews()
@@ -50,6 +51,26 @@ export default function CrewPage({ data }: { data: Crew }) {
 										<p className={`py-2 uppercase ${ data.status === 'active' ? 'text-green-500' : 'text-red-500' }`}>
 											{ data.status }
 										</p>
+										<p className='py-2'>
+											{ data.agency }
+										</p>
+										<p onClick={() => { window.open(data.wikipedia, '__blank') }} className='py-2 cursor-pointer uppercase underline underline-offset-2'>
+											wiki
+										</p>
+									</div>
+								</div>
+								<div className="py-4 md:py-8">
+									<div className="py-4">
+										<p className="block w-24 text-lg">Launches</p>
+										<div>
+											{
+												data.launches && data.launches.map(launch => (
+													<Link key={launch.id} href={`/launch/${launch.id}`}>
+														<button className="block text-gray-400 px-2 py-4 hover:text-white underline underline-offset-2">{ launch.name }</button>
+													</Link>
+												))
+											}
+										</div>
 									</div>
 								</div>
 							</div>
