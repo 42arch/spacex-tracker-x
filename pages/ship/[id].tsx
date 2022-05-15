@@ -73,35 +73,35 @@ export default function ShipPage({ data }: { data: Ship }) {
 									</div>
 								</div>
 							</div>
-								<div className="py-4">
-									<div className="py-4">
-										<p className="block w-24 text-lg">Launches</p>
-										<div>
-											{
-												data.launches && data.launches.map(launch => (
-													<Link key={launch.id} href={`/launch/${launch.id}`}>
-														<button className="block text-gray-400 px-2 py-4 hover:text-white underline underline-offset-2">{ launch.name }</button>
-													</Link>
-												))
-											}
-										</div>
-									</div>
-								</div>
-								{
+							<div className="py-4">
+							{
 									data.image && (
 										<div className="py-4">
 											<p className="block w-24 text-lg">Photos</p>
 											<div className="flex px-2 flex-wrap justify-evenly just py-4 w-full">
 												{
 													<button onClick={() => { window.open(data.image, '__blank') }} className="w-[24rem] h-[18rem] md:h-[20rem] md:mx-2">
-														<Image className="object-cover cursor-pointer rounded" src={data.image} layout="responsive" width={400} height={300} alt={data.image}></Image>
+														<Image className="object-cover cursor-pointer rounded" src={data.image} layout="responsive" width={480} height={340} alt={data.image}></Image>
 													</button>
 												}
 											</div>
 										</div>
 									)
 								}
+								<div className="py-4">
+									<p className="block w-24 text-lg">Launches</p>
+									<div>
+										{
+											data.launches && data.launches.map(launch => (
+												<Link key={launch.id} href={`/launch/${launch.id}`}>
+													<button className="block text-gray-400 px-2 py-4 hover:text-white underline underline-offset-2">{ launch.name }</button>
+												</Link>
+											))
+										}
+									</div>
+								</div>
 							</div>
+						</div>
 						) : (
 							<span>loading</span>
 						)
