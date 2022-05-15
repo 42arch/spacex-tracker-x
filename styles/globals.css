@@ -26,3 +26,7 @@
 .rocket-info-key {
 	@apply block text-gray-400 w-32
 }
+
+.btn {
+	@apply h-8 mr-6 leading-8 w-20 border-2 border-slate-800 dark:border-gray-400 hover:text-orange-500 hover:border-orange-500 dark:hover:border-orange-500 duration-100 rounded
+}

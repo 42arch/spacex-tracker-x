@@ -1,4 +1,4 @@
-import { Core, Crew, LaunchInfo, LaunchPad, Payload, Rocket, Ship } from "../types"
+import { Core, Crew, LaunchInfo, LaunchPad, Payload, Roadster, Rocket, Ship } from "../types"
 
 const baseUrl = 'https://api.spacexdata.com/v4'
 
@@ -237,4 +237,10 @@ export const queryOneShip = async (id: string | undefined) => {
 	})
 	const data: Ship[] = (await res.json()).docs
 	return data[0]
+}
+
+export const getRoadster = async () => {
+	const res = await fetch(`${baseUrl}/roadster`)
+	const data: Roadster = await res.json()
+	return data
 }
