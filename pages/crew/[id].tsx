@@ -41,7 +41,7 @@ export default function CrewPage({ data }: { data: Crew }) {
 							<div className="flex flex-col">
 								<div className="w-full flex flex-col md:flex-row">
 									<div className="mx-4 flex justify-center items-center">
-										<Image src={ data.image } alt='patch' width={200} height={200}/>
+										<Image src={ data.image } alt='patch' width={256} height={320}/>
 									</div>
 									<div className="h-full flex flex-col justify-center py-4 md:py-0 px-2 md:px-16">
 										<span className="py-4 text-3xl md:text-center">
