@@ -48,7 +48,7 @@ const Footer: FunctionComponent = () => {
 			</div>
 			<span className='block w-full text-xs'>
 				{ t('footer.info') }
-				<a className=' underline px-1' href="https://github.com/r-spacex/SpaceX-API"> r/spacex&apos;s API </a>
+				<a className=' underline px-1' href="https://github.com/r-spacex/SpaceX-API">r-spacex/SpaceX-API</a>
 				{ t('footer.suffix') }
 			</span>
 		</footer>
