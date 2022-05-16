@@ -5,13 +5,13 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
 import Layout from '../../components/Layout'
-import { Rocket } from '../../types'
-import { getRockets } from '../../utils/api'
+import { Rocket, Ship } from '../../types'
+import { getAllShips, getRockets } from '../../utils/api'
 
 export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
 	let data = null
 	try {
-		data = await getRockets() as Rocket[]
+		data = await getAllShips() as Ship[]
 
 	} catch (error) {
 
@@ -24,7 +24,7 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
 	}
 }
 
-const ShipIndex = ({ data }: { data: Rocket[] }) => {
+const ShipIndex = ({ data }: { data: Ship[] }) => {
 	const router = useRouter()
 	return (
 		<Layout>
@@ -32,10 +32,10 @@ const ShipIndex = ({ data }: { data: Rocket[] }) => {
 				<div className='py-8 pl-4 flex flex-col items-center md:items-start'>
 					{
 						data && (
-							data.map(rocket => (
-								<div key={rocket.id} className=' min-w-min py-4'>
-									<Link href={`/rocket/${rocket.id}`}>
-										<a className=' underline underline-offset-2 text-center text-xl'> { rocket.name } </a>
+							data.map(ship => (
+								<div key={ship.id} className=' min-w-min py-4'>
+									<Link href={`/ship/${ship.id}`}>
+										<a className=' underline underline-offset-2 text-center text-xl'> { ship.name } </a>
 									</Link>
 								</div>
 							))

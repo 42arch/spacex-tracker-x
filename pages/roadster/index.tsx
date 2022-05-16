@@ -41,9 +41,9 @@ const RoadsterIndex = ({ data }: { data: Roadster }) => {
 							<div className="py-4 md:py-8">
 								<p className="block text text-lg py-4">{ data.details }</p>
 								<div className='py-2'>
-										<button onClick={() => { window.open(data.wikipedia, '__blank') }} className='btn'>wiki</button>
-										<button onClick={() => { window.open(data.video, '__blank') }} className='btn'>webcast</button>
-									</div>
+									<button onClick={() => { window.open(data.wikipedia, '__blank') }} className='btn'>wiki</button>
+									<button onClick={() => { window.open(data.video, '__blank') }} className='btn'>webcast</button>
+								</div>
 							</div>
 							<div className="py-4">
 								<p className="block text-lg">Info</p>
