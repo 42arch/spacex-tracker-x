@@ -3,9 +3,10 @@ import Image from 'next/image'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import React from 'react'
 import Layout from '../../components/Layout'
-import { Crew, Payload } from '../../types'
-import { getAllCrews, getPayloadIds, queryOneCrew, queryOnePayload } from '../../utils/api'
+import { Crew } from '../../types'
+import { getAllCrews, queryOneCrew, queryOnePayload } from '../../utils/api'
 import Link from 'next/link'
+import { useTranslation } from 'next-i18next'
 
 export async function getStaticPaths() {
 	const crews = await getAllCrews()
@@ -33,6 +34,7 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
 }
 
 export default function CrewPage({ data }: { data: Crew }) {
+	const { t } = useTranslation()
 	return <Layout>
 		<section className='w-full relative pt-4 pb-18 px-2 md:px-10 flex flex-col'>
 			<div className='w-full h-full px-2 md:px-10 py-4 md:py-8 text-gray-300'>
@@ -52,7 +54,7 @@ export default function CrewPage({ data }: { data: Crew }) {
 											{ data.status }
 										</p>
 										<p className='py-2'>
-											{ data.agency }
+											{ t('crew.from') } { data.agency }
 										</p>
 										<p onClick={() => { window.open(data.wikipedia, '__blank') }} className='py-2 cursor-pointer uppercase underline underline-offset-2'>
 											wiki

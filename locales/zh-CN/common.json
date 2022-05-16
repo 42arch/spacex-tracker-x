@@ -26,5 +26,13 @@
 			"launchSite": "发射地点",
 			"rocket": "火箭"
 		}
+	},
+	"rocket": {
+		"info": "信息",
+		"firstFlight": "首飞",
+		"country": "国家"
+	},
+	"crew": {
+		"from": "来自"
 	}
 }

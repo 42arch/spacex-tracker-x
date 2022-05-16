@@ -30,5 +30,8 @@
 		"info": "info",
 		"firstFlight": "First Flight",
 		"country": "Country"
+	},
+	"crew": {
+		"from": "From"
 	}
 }

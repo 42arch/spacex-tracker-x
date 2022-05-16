@@ -26,8 +26,8 @@ const NavHeader = () => {
 					<FontAwesomeIcon name='menu' icon={ opened ? faXmark : faBars} size="sm" onClick={ toggleMenu }/>
 				</span>
 			</div>
-			<ul className={`md:flex md:items-center z-[999] md:z-auto md:static absolute w-full left-0 md:w-auto md:py-0 py-4 md:pl-0 pl-7
-				md:opacity-100 opacity-0 transition-all ease-in duration-200 ${opened ? 'opacity-100 visible' : 'invisible md:visible'}` }>
+			<ul className={`md:flex md:items-center z-[999] md:z-auto md:static absolute w-full left-0 md:w-auto md:py-0 py-4 md:pl-0 pl-7 bg-white dark:bg-black
+				md:opacity-100 transition-all ease-in duration-200 ${opened ? 'opacity-100 visible' : 'opacity-0 invisible'}` }>
 				<li className='mx-4 my-6 md:my-0'>
 					<Link href='/'>
 						<a className='text-xl hover:text-orange-500 duration-500'>{ t('nav.home') }</a>
