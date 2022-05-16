@@ -6,6 +6,10 @@
 		"iss": "ISS",
 		"back": "back"
 	},
+	"footer": {
+		"info": "This website is unofficial, not affiliated with SpaceX Corp. All the data is from",
+		"suffix": "project."
+	},
 	"status": {
 		"all": "All",
 		"upcoming": "Upcoming",
@@ -25,6 +29,16 @@
 			"launchSite": "Launch Site",
 			"rocket": "Rocket"
 		}
+	},
+	"category": {
+		"rocket": "rockets",
+		"dragon": "dragon",
+		"launchpad": "launchpads",
+		"ship": "ships",
+		"crew": "crews",
+		"landpad": "landpads",
+		"starlink": "starlinks",
+		"roadster": "roadster"
 	},
 	"rocket": {
 		"info": "info",

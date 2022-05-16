@@ -6,6 +6,10 @@
 		"iss": "ISS",
 		"back": "返回"
 	},
+	"footer": {
+		"info": "此网站是非官方的，不从属于SpaceX公司，数据来自于",
+		"suffix": "项目。"
+	},
 	"status": {
 		"all": "全部",
 		"upcoming": "即将",
@@ -26,6 +30,16 @@
 			"launchSite": "发射地点",
 			"rocket": "火箭"
 		}
+	},
+	"category": {
+		"rocket": "火箭",
+		"dragon": "龙飞船",
+		"launchpad": "发射场",
+		"ship": "工作船",
+		"crew": "机组乘员",
+		"landpad": "着陆场",
+		"starlink": "星链卫星",
+		"roadster": "超跑"
 	},
 	"rocket": {
 		"info": "信息",

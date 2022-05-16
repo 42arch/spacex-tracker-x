@@ -4,7 +4,6 @@ import Image from 'next/image'
 import { LaunchInfo, LaunchPad, Payload, Rocket } from "../../types"
 import { GetStaticProps, GetStaticPropsContext } from "next"
 import { format } from "date-fns"
-import { zhCN } from "date-fns/locale"
 import { getLaunchIds, queryOneLaunch } from "../../utils/api"
 import { useRouter } from "next/router"
 import { serverSideTranslations } from "next-i18next/serverSideTranslations"

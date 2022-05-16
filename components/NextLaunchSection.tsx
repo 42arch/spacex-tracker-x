@@ -1,7 +1,7 @@
 import React, { FunctionComponent, useEffect, useState } from 'react'
 import { ArrowDownIcon, ExternalLinkIcon } from '@heroicons/react/solid'
 import { useNextLaunch } from '../hooks/useNextLaunch'
-import { formatDuration, intervalToDuration, Duration, differenceInDays } from 'date-fns'
+import { formatDuration, intervalToDuration, Duration, differenceInDays, format } from 'date-fns'
 import { useTranslation } from 'next-i18next'
 import { LaunchInfo } from '../types'
 import Button from './Button'
@@ -66,7 +66,7 @@ const NextLaunchSection: FunctionComponent<IProps> = ({ data }) => {
 							</div>
 							<div className='flex flex-col text-base'>
 								<span>
-									{ t('next.info.launchTime') }: { data.date_utc }
+									{ t('next.info.launchTime') }: { format(new Date(data.date_utc), "yyyy-MM-dd HH:mm:ss 'UTC'") }
 								</span>
 								<span>
 									{ t('next.info.launchSite') }: { data.launchpad.name }
@@ -78,9 +78,11 @@ const NextLaunchSection: FunctionComponent<IProps> = ({ data }) => {
 						</div>
 					)
 				}
-				<a href='#launchs' className='absolute bottom-2'>
-					<ArrowDownIcon className="cursor-pointer animate-bounce text-center h-8 text-white opacity-80"/>				
-				</a>
+				<Link href='/category'>
+					<a className='absolute bottom-2'>
+						<ArrowDownIcon className="cursor-pointer animate-bounce text-center h-8 text-white opacity-80"/>				
+					</a>
+				</Link>
 			</div>
 		</section>
 	)
