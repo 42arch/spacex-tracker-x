@@ -77,7 +77,7 @@ export default function Launch({ data } : IProp) {
 										<p className={`py-2 uppercase ${ data.upcoming ? 'text-blue-500' : ( data.success ? 'text-green-500' : 'text-red-500' )}`}>
 											{ data.success ? 'success' : (data.upcoming ? 'upcoming' : 'fail') }
 										</p>
-										<button onClick={() => { window.open(data.links.webcast, '__blank') }} className="border-2 min-w-[10rem] border-gray-800 dark:border-gray-400 text-gray-800 dark:text-gray-400 hover:text-orange-500 hover:border-orange-500 duration-100 rounded h-10">
+										<button onClick={() => { window.open(data.links.webcast, '__blank') }} className="border-2 min-w-[10rem] border-gray-800 dark:border-gray-400 text-gray-800 dark:text-gray-400 hover:text-orange-500 hover:border-orange-500 hover:dark:text-orange-500 hover:dark:border-orange-500 duration-100 rounded h-10">
 											Watch Webcast
 										</button>
 									</div>
@@ -155,7 +155,7 @@ export default function Launch({ data } : IProp) {
 										)
 									}
 									<div className="py-4">
-										<p className="block w-24 text-lg">Links:</p>
+										<p className="block w-24 text-lg">Links</p>
 										<div className="flex py-4 px-2">
 											{
 												data.links.presskit && (
@@ -181,7 +181,7 @@ export default function Launch({ data } : IProp) {
 										</div>
 									</div>
 									<div className="py-4">
-										<p className="block w-24 text-lg">Photos:</p>
+										<p className="block w-24 text-lg">Photos</p>
 										<div className="flex flex-wrap justify-evenly py-4 w-full">
 											{
 												data.links.flickr.original.map(photo => (
