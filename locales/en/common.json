@@ -4,7 +4,8 @@
 		"mission": "Mission",
 		"category": "Category",
 		"iss": "ISS",
-		"back": "back"
+		"back": "back",
+		"load": "load more"
 	},
 	"footer": {
 		"info": "This website is unofficial, not affiliated with SpaceX Corp. All the data is from",
@@ -14,7 +15,9 @@
 		"all": "All",
 		"upcoming": "Upcoming",
 		"success": "Success",
-		"fail": "Fail"
+		"fail": "Fail",
+		"active": "ACTIVE",
+		"inactive": "INACTIVE"
 	},
 	"next": {
 		"title": "Next Launch",
@@ -30,6 +33,16 @@
 			"rocket": "Rocket"
 		}
 	},
+	"launch": {
+		"watch": "Watch Webcast",
+		"rocket": "Rocket",
+		"launchpad": "Launchpad",
+		"payload": "Payloads",
+		"crew": "crews",
+		"ship": "ships",
+		"link": "Links",
+		"photo": "Photos"
+	},
 	"category": {
 		"rocket": "rockets",
 		"dragon": "dragon",
@@ -43,7 +56,18 @@
 	"rocket": {
 		"info": "info",
 		"firstFlight": "First Flight",
-		"country": "Country"
+		"country": "Country",
+		"company": "Company",
+		"cost": "Cost Per Launch",
+		"successRate": "Success Rate",
+		"stages": "Stages",
+		"engine": "Engine",
+		"type": "Type",
+		"version": "Version",
+		"number": "Number",
+		"layout": "Layout",
+		"payloadWeight": "Payload Weights",
+		"photo": "Photos" 
 	},
 	"crew": {
 		"from": "From"

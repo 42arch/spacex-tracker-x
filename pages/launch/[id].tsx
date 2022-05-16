@@ -7,6 +7,7 @@ import { format } from "date-fns"
 import { getLaunchIds, queryOneLaunch } from "../../utils/api"
 import { useRouter } from "next/router"
 import { serverSideTranslations } from "next-i18next/serverSideTranslations"
+import { useTranslation } from "next-i18next"
 
 interface IProp {
 	data: LaunchInfo
@@ -46,7 +47,7 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
 }
 
 export default function Launch({ data } : IProp) {
-	const router = useRouter()
+	const { t } = useTranslation()
 	const openLink = (url: string) => {
 		window.open(url, '__blank')
 	}
@@ -74,10 +75,10 @@ export default function Launch({ data } : IProp) {
 										</span>
 										<p className="py-2">{ data.date_utc }</p>
 										<p className={`py-2 uppercase ${ data.upcoming ? 'text-blue-500' : ( data.success ? 'text-green-500' : 'text-red-500' )}`}>
-											{ data.success ? 'success' : (data.upcoming ? 'upcoming' : 'fail') }
+											{ data.success ? `${ t('status.success') }` : (data.upcoming ? `${ t('status.upcoming') }` : `${ t('status.fail') }`) }
 										</p>
 										<button onClick={() => { window.open(data.links.webcast, '__blank') }} className="border-2 min-w-[10rem] border-gray-800 dark:border-gray-400 text-gray-800 dark:text-gray-400 hover:text-orange-500 hover:border-orange-500 hover:dark:text-orange-500 hover:dark:border-orange-500 duration-100 rounded h-10">
-											Watch Webcast
+											{ t('launch.watch') }
 										</button>
 									</div>
 								</div>
@@ -92,7 +93,7 @@ export default function Launch({ data } : IProp) {
 									{
 										data.rocket && (
 											<div className="py-4">
-												<p className="block w-24 text-lg">Rocket</p>
+												<p className="block w-24 text-lg">{ t('launch.rocket') }</p>
 												<Link href={`/rocket/${data.rocket.id}`} >
 													<button className="common-link">{ data.rocket.name }</button>
 												</Link>
@@ -102,7 +103,7 @@ export default function Launch({ data } : IProp) {
 									{
 										data.launchpad && (
 											<div className="py-4">
-												<p className="block w-24 text-lg">Launchpad</p>
+												<p className="block w-24 text-lg">{ t('launch.launchpad') }</p>
 												<Link href={`/launchpad/${data.launchpad.id}`}>
 													<button className="common-link">{ data.launchpad.name }</button>
 												</Link>
@@ -110,7 +111,7 @@ export default function Launch({ data } : IProp) {
 										)
 									}
 									<div className="py-4">
-										<p className="block w-24 text-lg">Payloads</p>
+										<p className="block w-24 text-lg">{ t('launch.payload') }</p>
 										<div>
 											{
 												data.payloads && data.payloads.map(payload => (
@@ -124,7 +125,7 @@ export default function Launch({ data } : IProp) {
 									{
 										data.crew.length > 0 && (
 											<div className="py-4">
-												<p className="block w-24 text-lg">Crews</p>
+												<p className="block w-24 text-lg">{ t('launch.crew') }</p>
 												<div>
 													{
 														data.crew && data.crew.map(crew => (
@@ -140,7 +141,7 @@ export default function Launch({ data } : IProp) {
 									{
 										data.ships.length > 0 && (
 											<div className="py-4">
-												<p className="block w-24 text-lg">Ships</p>
+												<p className="block w-24 text-lg">{ t('launch.ship') }</p>
 												<div>
 													{
 														data.ships && data.ships.map(ship => (
@@ -154,7 +155,7 @@ export default function Launch({ data } : IProp) {
 										)
 									}
 									<div className="py-4">
-										<p className="block w-24 text-lg">Links</p>
+										<p className="block w-24 text-lg">{ t('launch.link') }</p>
 										<div className="flex py-4 px-2">
 											{
 												data.links.presskit && (
@@ -180,7 +181,7 @@ export default function Launch({ data } : IProp) {
 										</div>
 									</div>
 									<div className="py-4">
-										<p className="block w-24 text-lg">Photos</p>
+										<p className="block w-24 text-lg">{ t('launch.photo') }</p>
 										<div className="flex flex-wrap justify-evenly py-4 w-full">
 											{
 												data.links.flickr.original.map(photo => (

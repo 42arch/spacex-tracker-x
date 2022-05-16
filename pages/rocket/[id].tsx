@@ -1,5 +1,6 @@
 import { ArrowSmLeftIcon } from '@heroicons/react/solid'
 import { GetStaticProps, GetStaticPropsContext } from 'next'
+import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
@@ -43,7 +44,7 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
 }
 
 export default function RocketPage({ data, loading }: { data: Rocket, loading: boolean }) {
-	const router = useRouter()
+	const { t } = useTranslation()
 
 	return <Layout>
 		<section className='w-full relative pt-4 pb-18 px-2 md:px-10 flex flex-col'>
@@ -54,7 +55,7 @@ export default function RocketPage({ data, loading }: { data: Rocket, loading: b
 							<div className="h-full flex flex-col justify-center py-4 md:py-0">
 								<span className="py-4 text-3xl md:text-center">{ data.name }</span>
 								<p className={`py-2 uppercase ${ data.active ? 'text-green-500' : 'text-red-500' }`}>
-									{data.active ? 'active' : 'inactive' }
+									{data.active ? `${ t('status.active') }` : `${ t('status.inactive') }` }
 								</p>
 							</div>
 						</div>
@@ -62,57 +63,57 @@ export default function RocketPage({ data, loading }: { data: Rocket, loading: b
 							<p className="block text text-lg py-4">{ data.description }</p>
 						</div>
 						<div className="py-4">
-							<p className="block text-lg">Info</p>
+							<p className="block text-lg">{ t('rocket.info') }</p>
 							<div className='px-2 max-w-sm md:max-w-xl'>
 								<div className='py-1 flex'>
-									<a className="info-key">First Flight: </a>
+									<a className="info-key">{ t('rocket.firstFlight') }: </a>
 									<a className="info-value">{ data.first_flight }</a>
 								</div>
 								<div className='py-1 flex'>
-									<a className="info-key">Country: </a>
+									<a className="info-key">{ t('rocket.country') }: </a>
 									<a className="info-value">{ data.country }</a>
 								</div>
 								<div className='py-1 flex'>
-									<a className="info-key">Company: </a>
+									<a className="info-key">{ t('rocket.company') }: </a>
 									<a className="info-value">{ data.company }</a>
 								</div>
 								<div className='py-1 flex'>
-									<a className="info-key">Cost Per Launch: </a>
+									<a className="info-key">{ t('rocket.cost') }: </a>
 									<a className="info-value">{ data.cost_per_launch }$</a>
 								</div>
 								<div className='py-1 flex'>
-									<a className="info-key">Success Rate: </a>
+									<a className="info-key">{ t('rocket.successRate') }: </a>
 									<a className="info-value">{ data.success_rate_pct }%</a>
 								</div>
 								<div className='py-1 flex'>
-									<a className="info-key">Stages: </a>
+									<a className="info-key">{ t('rocket.stages') }: </a>
 									<a className="info-value">{ data.stages }</a>
 								</div>
 							</div>
 						</div>
 						<div className="py-4">
-							<p className="block text-lg">Engine</p>
+							<p className="block text-lg">{ t('rocket.engine') }</p>
 							<div className='px-2 max-w-sm md:max-w-xs'>
 								<div className='py-1 flex'>
-									<a className="info-key">Type: </a>
+									<a className="info-key">{ t('rocket.type') }: </a>
 									<a className="info-value">{ data.engines.type }</a>
 								</div>
 								<div className='py-1 flex'>
-									<a className="info-key">Version: </a>
+									<a className="info-key">{ t('rocket.version') }: </a>
 									<a className="info-value">{ data.engines.version }</a>
 								</div>
 								<div className='py-1 flex'>
-									<a className="info-key">Number: </a>
+									<a className="info-key">{ t('rocket.number') }: </a>
 									<a className="info-value">{ data.engines.number }</a>
 								</div>
 								<div className='py-1 flex'>
-									<a className="info-key">layout: </a>
+									<a className="info-key">{ t('rocket.layout') }: </a>
 									<a className="info-value">{ data.engines.layout }</a>
 								</div>
 							</div>
 						</div>
 						<div className="py-4">
-							<p className="block text-lg">Payload Weights</p>
+							<p className="block text-lg">{ t('rocket.payloadWeight') }</p>
 							<div className='px-2 max-w-sm md:max-w-xs'>
 								{
 									data.payload_weights.map(w => (
@@ -125,7 +126,7 @@ export default function RocketPage({ data, loading }: { data: Rocket, loading: b
 							</div>
 						</div>
 						<div className="py-4">
-							<p className="block w-24 text-lg">Photos</p>
+							<p className="block w-24 text-lg">{ t('rocket.photo') }</p>
 							<div className="flex px-2 flex-wrap justify-evenly just py-4 w-full">
 								{
 									data.flickr_images.map(photo => (
@@ -136,7 +137,6 @@ export default function RocketPage({ data, loading }: { data: Rocket, loading: b
 								}
 							</div>
 						</div>
-
 					</div>
 				</div>
 			</div>

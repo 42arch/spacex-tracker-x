@@ -3,8 +3,9 @@
 		"home": "主页",
 		"mission": "任务",
 		"category": "分类",
-		"iss": "ISS",
-		"back": "返回"
+		"iss": "国际空间站",
+		"back": "返回",
+		"load": "加载更多"
 	},
 	"footer": {
 		"info": "此网站是非官方的，不从属于SpaceX公司，数据来自于",
@@ -14,9 +15,10 @@
 		"all": "全部",
 		"upcoming": "即将",
 		"success": "成功",
-		"fail": "失败"
+		"fail": "失败",
+		"active": "活跃",
+		"inactive": "不活跃"
 	},
-	"test": "test",
 	"next": {
 		"title": "下次发射",
 		"time": {
@@ -31,6 +33,16 @@
 			"rocket": "火箭"
 		}
 	},
+	"launch": {
+		"watch": "回看直播",
+		"rocket": "火箭",
+		"launchpad": "发射场",
+		"payload": "载荷",
+		"crew": "机组乘员",
+		"ship": "工作船",
+		"link": "链接",
+		"photo": "照片"
+	},
 	"category": {
 		"rocket": "火箭",
 		"dragon": "龙飞船",
@@ -39,12 +51,23 @@
 		"crew": "机组乘员",
 		"landpad": "着陆场",
 		"starlink": "星链卫星",
-		"roadster": "超跑"
+		"roadster": "马斯克的超跑"
 	},
 	"rocket": {
 		"info": "信息",
-		"firstFlight": "首飞",
-		"country": "国家"
+		"firstFlight": "首飞时间",
+		"country": "国家",
+		"company": "公司",
+		"cost": "每次发射花费",
+		"successRate": "成功率",
+		"stages": "级数",
+		"engine": "引擎",
+		"type": "型号",
+		"version": "版本",
+		"number": "数量",
+		"layout": "布局",
+		"payloadWeight": "载荷重量",
+		"photo": "照片"
 	},
 	"crew": {
 		"from": "来自"

@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEllipsis, faBars, faXmark } from '@fortawesome/free-solid-svg-icons'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
+import { MenuIcon, XIcon } from '@heroicons/react/solid'
 import { useTranslation } from 'next-i18next'
 
 const NavHeader = () => {
@@ -22,8 +22,12 @@ const NavHeader = () => {
 						SpaceX Tracker X
 					</a>
 				</Link>
-				<span className='text-3xl cursor-pointer mx-2 md:hidden block'>
-					<FontAwesomeIcon name='menu' icon={ opened ? faXmark : faBars} size="sm" onClick={ toggleMenu }/>
+				<span className='text-3xl w-6 h-6 cursor-pointer mx-2 md:hidden block' onClick={ toggleMenu } >
+					{
+						opened ? <XIcon/> : <MenuIcon ></MenuIcon>
+					}
+					
+					{/* <FontAwesomeIcon name='menu' icon={ opened ? faXmark : faBars} size="sm" onClick={ toggleMenu }/> */}
 				</span>
 			</div>
 			<ul className={`md:flex md:items-center z-[999] md:z-auto md:static absolute w-full left-0 md:w-auto md:py-0 py-4 md:pl-0 pl-7 bg-white dark:bg-black

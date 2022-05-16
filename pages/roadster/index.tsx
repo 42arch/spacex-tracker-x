@@ -49,23 +49,23 @@ const RoadsterIndex = ({ data }: { data: Roadster }) => {
 								<p className="block text-lg">Info</p>
 								<div className='px-2 max-w-sm md:max-w-xl'>
 									<div className='py-1 flex'>
-										<a className="block text-gray-800 dark:text-gray-400 w-48">Launch Time: </a>
+										<a className="block text-gray-800 dark:text-gray-400 w-40">Launch Time: </a>
 										<a className="block text-gray-800 dark:text-gray-400">{ data.launch_date_utc }</a>
 									</div>
 									<div className='py-1 flex'>
-										<a className="block text-gray-800 dark:text-gray-400 w-48">Orbit: </a>
+										<a className="block text-gray-800 dark:text-gray-400 w-40">Orbit: </a>
 										<a className="block text-gray-800 dark:text-gray-400">{ data.orbit_type }</a>
 									</div>
 									<div className='py-1 flex'>
-										<a className="block text-gray-800 dark:text-gray-400 w-48">Speed: </a>
+										<a className="block text-gray-800 dark:text-gray-400 w-40">Speed: </a>
 										<a className="block text-gray-800 dark:text-gray-400">{ data.speed_kph } km/h</a>
 									</div>
 									<div className='py-1 flex'>
-										<a className="block text-gray-800 dark:text-gray-400 w-48">Distance From Earth: </a>
+										<a className="block text-gray-800 dark:text-gray-400 w-40">Distance From Earth: </a>
 										<a className="block text-gray-800 dark:text-gray-400">{ data.earth_distance_km } km</a>
 									</div>
 									<div className='py-1 flex'>
-										<a className="block text-gray-800 dark:text-gray-400 w-48">Distance From Mars: </a>
+										<a className="block text-gray-800 dark:text-gray-400 w-40">Distance From Mars: </a>
 										<a className="block text-gray-800 dark:text-gray-400">{ data.mars_distance_km } km</a>
 									</div>
 								</div>

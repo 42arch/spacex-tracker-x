@@ -25,6 +25,7 @@ const Footer: FunctionComponent = () => {
 
 	const [mounted, setMounted] = useState(false)
 	useEffect(() => {
+		setTheme('dark')
 		setMounted(true)
 	}, [])
 	if (!mounted) {
