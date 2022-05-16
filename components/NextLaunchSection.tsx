@@ -34,7 +34,7 @@ const NextLaunchSection: FunctionComponent<IProps> = ({ data }) => {
 			<div className='h-full flex justify-center items-center'>
 				{
 					data && (
-						<div className='flex flex-col justify-between h-96 w-4/5 md:w-1/2 p-8 dark:bg-slate-800 bg-slate-400 dark:bg-opacity-40 bg-opacity-50 rounded-lg'>
+						<div className='flex flex-col justify-between h-96 w-4/5 md:w-1/2 p-4 md:p-8 dark:bg-slate-800 bg-slate-400 dark:bg-opacity-40 bg-opacity-50 rounded-lg'>
 							<div className='flex flex-col'>
 								<span className='text-lg'>
 									{ t('next.title') }
@@ -66,15 +66,15 @@ const NextLaunchSection: FunctionComponent<IProps> = ({ data }) => {
 							</div>
 							<div className='flex flex-col text-base'>
 								<p className='flex'>
-									<span className='block w-20'>{ t('next.info.launchTime') }:</span>
+									<span className='block w-24'>{ t('next.info.launchTime') }:</span>
 									<span>{ format(new Date(data.date_utc), "yyyy-MM-dd HH:mm:ss 'UTC'") }</span>
 								</p>
 								<p className='flex'>
-									<span className='block w-20'>{ t('next.info.launchSite') }:</span>
+									<span className='block w-24'>{ t('next.info.launchSite') }:</span>
 									<span>{ data.launchpad.name }</span>
 								</p>
 								<p className='flex'>
-									<span className='block w-20'>{ t('next.info.rocket') }:</span>
+									<span className='block w-24'>{ t('next.info.rocket') }:</span>
 									<span>{ data.rocket.name }</span>
 								</p>
 							</div>
