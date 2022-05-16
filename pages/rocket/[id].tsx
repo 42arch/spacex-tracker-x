@@ -47,7 +47,7 @@ export default function RocketPage({ data, loading }: { data: Rocket, loading: b
 
 	return <Layout>
 		<section className='w-full relative pt-4 pb-18 px-2 md:px-10 flex flex-col'>
-			<div className='w-full h-full px-2 md:px-10 py-4 md:py-8 text-gray-300'>
+			<div className='w-full h-full px-2 md:px-10 py-4 md:py-8 dark:text-gray-200'>
 				<div className='h-auto'>
 					<div className="flex flex-col">
 						<div className="w-full flex flex-col md:flex-row">
@@ -65,28 +65,28 @@ export default function RocketPage({ data, loading }: { data: Rocket, loading: b
 							<p className="block text-lg">Info</p>
 							<div className='px-2 max-w-sm md:max-w-xl'>
 								<div className='py-1 flex'>
-									<a className="rocket-info-key">First Flight: </a>
-									<a className="block text-gray-400">{ data.first_flight }</a>
+									<a className="info-key">First Flight: </a>
+									<a className="info-value">{ data.first_flight }</a>
 								</div>
 								<div className='py-1 flex'>
-									<a className="rocket-info-key">Country: </a>
-									<a className="block text-gray-400">{ data.country }</a>
+									<a className="info-key">Country: </a>
+									<a className="info-value">{ data.country }</a>
 								</div>
 								<div className='py-1 flex'>
-									<a className="rocket-info-key">Company: </a>
-									<a className="block text-gray-400">{ data.company }</a>
+									<a className="info-key">Company: </a>
+									<a className="info-value">{ data.company }</a>
 								</div>
 								<div className='py-1 flex'>
-									<a className="rocket-info-key">Cost Per Launch: </a>
-									<a className="block text-gray-400">{ data.cost_per_launch }$</a>
+									<a className="info-key">Cost Per Launch: </a>
+									<a className="info-value">{ data.cost_per_launch }$</a>
 								</div>
 								<div className='py-1 flex'>
-									<a className="rocket-info-key">Success Rate: </a>
-									<a className="block text-gray-400">{ data.success_rate_pct }%</a>
+									<a className="info-key">Success Rate: </a>
+									<a className="info-value">{ data.success_rate_pct }%</a>
 								</div>
 								<div className='py-1 flex'>
-									<a className="rocket-info-key">Stages: </a>
-									<a className="block text-gray-400">{ data.stages }</a>
+									<a className="info-key">Stages: </a>
+									<a className="info-value">{ data.stages }</a>
 								</div>
 							</div>
 						</div>
@@ -94,20 +94,20 @@ export default function RocketPage({ data, loading }: { data: Rocket, loading: b
 							<p className="block text-lg">Engine</p>
 							<div className='px-2 max-w-sm md:max-w-xs'>
 								<div className='py-1 flex'>
-									<a className="rocket-info-key">Type: </a>
-									<a className="block text-gray-400">{ data.engines.type }</a>
+									<a className="info-key">Type: </a>
+									<a className="info-value">{ data.engines.type }</a>
 								</div>
 								<div className='py-1 flex'>
-									<a className="rocket-info-key">Version: </a>
-									<a className="block text-gray-400">{ data.engines.version }</a>
+									<a className="info-key">Version: </a>
+									<a className="info-value">{ data.engines.version }</a>
 								</div>
 								<div className='py-1 flex'>
-									<a className="rocket-info-key">Number: </a>
-									<a className="block text-gray-400">{ data.engines.number }</a>
+									<a className="info-key">Number: </a>
+									<a className="info-value">{ data.engines.number }</a>
 								</div>
 								<div className='py-1 flex'>
-									<a className="rocket-info-key">layout: </a>
-									<a className="block text-gray-400">{ data.engines.layout }</a>
+									<a className="info-key">layout: </a>
+									<a className="info-value">{ data.engines.layout }</a>
 								</div>
 							</div>
 						</div>
@@ -117,8 +117,8 @@ export default function RocketPage({ data, loading }: { data: Rocket, loading: b
 								{
 									data.payload_weights.map(w => (
 										<div className='py-1 flex' key={w.id}>
-											<a className="rocket-info-key" title={w.name}>{ w.id }: </a>
-											<a className="block text-gray-400">{ w.kg } kg / { w.lb } lb</a>
+											<a className="info-key" title={w.name}>{ w.id }: </a>
+											<a className="info-value">{ w.kg } kg / { w.lb } lb</a>
 										</div>	
 									))
 								}

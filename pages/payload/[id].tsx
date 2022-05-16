@@ -36,7 +36,7 @@ export default function RocketPage({ data }: { data: Payload }) {
 
 	return <Layout>
 		<section className='w-full relative pt-4 pb-18 px-2 md:px-10 flex flex-col'>
-			<div className='w-full h-full px-2 md:px-10 py-4 md:py-8 text-gray-300'>
+			<div className='w-full h-full px-2 md:px-10 py-4 md:py-8 dark:text-gray-200'>
 				<div className='h-auto'>
 					<div className="flex flex-col">
 						<div className="w-full flex flex-col md:flex-row">
@@ -60,20 +60,20 @@ export default function RocketPage({ data }: { data: Payload }) {
 									<p className="block text-lg">Dragon Capsule</p>
 									<div className='px-2 max-w-sm md:max-w-xl'>
 										<div className='py-1 flex'>
-											<a className="rocket-info-key">status: </a>
-											<a className="block text-gray-400">{ data.dragon.capsule.status }</a>
+											<a className="info-key">status: </a>
+											<a className="info-value">{ data.dragon.capsule.status }</a>
 										</div>
 										<div className='py-1 flex'>
-											<a className="rocket-info-key">Reuse Count: </a>
-											<a className="block text-gray-400">{ data.dragon.capsule.reuse_count }</a>
+											<a className="info-key">Reuse Count: </a>
+											<a className="info-value">{ data.dragon.capsule.reuse_count }</a>
 										</div>
 										<div className='py-1 flex'>
-											<a className="rocket-info-key">Water Landings: </a>
-											<a className="block text-gray-400">{ data.dragon.capsule.water_landings }</a>
+											<a className="info-key">Water Landings: </a>
+											<a className="info-value">{ data.dragon.capsule.water_landings }</a>
 										</div>
 										<div className='py-1 flex'>
-											<a className="rocket-info-key">Land Landings: </a>
-											<a className="block text-gray-400">{ data.dragon.capsule.land_landings }</a>
+											<a className="info-key">Land Landings: </a>
+											<a className="info-value">{ data.dragon.capsule.land_landings }</a>
 										</div>
 									</div>
 								</div>
@@ -83,20 +83,20 @@ export default function RocketPage({ data }: { data: Payload }) {
 							<p className="block text-lg">Basic Info</p>
 							<div className='px-2 max-w-sm md:max-w-xl'>
 								<div className='py-1 flex'>
-									<a className="rocket-info-key">Reused: </a>
-									<a className="block text-gray-400">{ data.reused ? 'yes' : 'no' }</a>
+									<a className="info-key">Reused: </a>
+									<a className="info-value">{ data.reused ? 'Yes' : 'No' }</a>
 								</div>
 								<div className='py-1 flex'>
-									<a className="rocket-info-key">Nationalities: </a>
-									<a className="block text-gray-400">{ data.nationalities.toString() }</a>
+									<a className="info-key">Nationalities: </a>
+									<a className="info-value">{ data.nationalities.toString() }</a>
 								</div>
 								<div className='py-1 flex'>
-									<a className="rocket-info-key">Customers: </a>
-									<a className="block text-gray-400">{ data.customers.toString() }</a>
+									<a className="info-key">Customers: </a>
+									<a className="info-value">{ data.customers.toString() }</a>
 								</div>
 								<div className='py-1 flex'>
-									<a className="rocket-info-key">Manufacturers: </a>
-									<a className="block text-gray-400">{ data.manufacturers.toString() }</a>
+									<a className="info-key">Manufacturers: </a>
+									<a className="info-value">{ data.manufacturers.toString() }</a>
 								</div>
 							</div>
 						</div>
@@ -104,16 +104,16 @@ export default function RocketPage({ data }: { data: Payload }) {
 							<p className="block text-lg">Orbit Info</p>
 							<div className='px-2 max-w-sm md:max-w-xl'>
 								<div className='py-1 flex'>
-									<a className="rocket-info-key">Orbit: </a>
-									<a className="block text-gray-400">{ data.orbit }</a>
+									<a className="info-key">Orbit: </a>
+									<a className="info-value">{ data.orbit }</a>
 								</div>
 								<div className='py-1 flex'>
-									<a className="rocket-info-key">Reference System: </a>
-									<a className="block text-gray-400">{ data.reference_system }</a>
+									<a className="info-key">Reference System: </a>
+									<a className="info-value">{ data.reference_system }</a>
 								</div>
 								<div className='py-1 flex'>
-									<a className="rocket-info-key">Regime: </a>
-									<a className="block text-gray-400">{ data.regime }</a>
+									<a className="info-key">Regime: </a>
+									<a className="info-value">{ data.regime }</a>
 								</div>
 							</div>
 						</div>

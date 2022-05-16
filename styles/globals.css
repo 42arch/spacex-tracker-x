@@ -18,13 +18,20 @@
     src: url(/fonts/D-DIN-Bold.woff2) format("woff2");
   }
 }
-
-.link-btn {
-	@apply block max-w-[6rem] pr-4 text-center text-gray-400 hover:text-white underline underline-offset-2
+.common-link {
+	@apply block text-gray-800 dark:text-gray-400 px-2 py-4 hover:text-black hover:dark:text-white underline underline-offset-2
 }
 
-.rocket-info-key {
-	@apply block text-gray-400 w-32
+.link-btn {
+	@apply block max-w-[6rem] pr-4 text-center text-gray-800 dark:text-gray-400 hover:text-black hover:dark:text-white underline underline-offset-2
+}
+
+.info-key {
+	@apply block text-gray-800 dark:text-gray-400 w-36
+}
+
+.info-value {
+	@apply block text-gray-800 dark:text-gray-400
 }
 
 .btn {

@@ -47,7 +47,7 @@ const Launchpad = ({ data, loading }: { data: LaunchPad, loading: boolean }) => 
 
 	return <Layout>
 			<section className='w-full relative pt-4 pb-18 px-2 md:px-10 flex flex-col'>
-				<div className='w-full h-full px-2 md:px-10 py-4 md:py-8 text-gray-300'>
+				<div className='w-full h-full px-2 md:px-10 py-4 md:py-8 dark:text-gray-200'>
 					<div className='h-auto'>
 						<div className="flex flex-col">
 							<div className="w-full flex flex-col md:flex-row">
@@ -65,28 +65,28 @@ const Launchpad = ({ data, loading }: { data: LaunchPad, loading: boolean }) => 
 								<p className="block text-lg">Info</p>
 								<div className='px-2 max-w-sm md:max-w-xl'>
 									<div className='py-1 flex'>
-										<a className="rocket-info-key">Name: </a>
-										<a className="block text-gray-400">{ data.name }</a>
+										<a className="info-key">Name: </a>
+										<a className="info-value">{ data.name }</a>
 									</div>
 									<div className='py-1 flex'>
-										<a className="rocket-info-key">Locality: </a>
-										<a className="block text-gray-400">{ data.locality }</a>
+										<a className="info-key">Locality: </a>
+										<a className="info-value">{ data.locality }</a>
 									</div>
 									<div className='py-1 flex'>
-										<a className="rocket-info-key">Region: </a>
-										<a className="block text-gray-400">{ data.region }</a>
+										<a className="info-key">Region: </a>
+										<a className="info-value">{ data.region }</a>
 									</div>
 									<div className='py-1 flex'>
-										<a className="rocket-info-key">Coordinate: </a>
-										<a className="block text-gray-400">{ data.longitude }, { data.latitude }</a>
+										<a className="info-key">Coordinate: </a>
+										<a className="info-value">{ data.longitude }, { data.latitude }</a>
 									</div>
 									<div className='py-1 flex'>
-										<a className="rocket-info-key">Timezone: </a>
-										<a className="block text-gray-400">{ data.timezone }</a>
+										<a className="info-key">Timezone: </a>
+										<a className="info-value">{ data.timezone }</a>
 									</div>
 									<div className='py-1 flex'>
-										<a className="rocket-info-key">Launch Times: </a>
-										<a className="block text-gray-400" title='successes/attempts'>{ data.launch_successes } / { data.launch_attempts }</a>
+										<a className="info-key">Launch Times: </a>
+										<a className="info-value" title='successes/attempts'>{ data.launch_successes } / { data.launch_attempts }</a>
 									</div>
 								</div>
 							</div>

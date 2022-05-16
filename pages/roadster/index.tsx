@@ -30,7 +30,7 @@ const RoadsterIndex = ({ data }: { data: Roadster }) => {
 	return (
 		<Layout>
 			<section className='w-full relative pt-4 pb-18 px-2 md:px-10 flex flex-col'>
-				<div className='w-full h-full px-2 md:px-10 py-4 md:py-8 text-gray-300'>
+				<div className='w-full h-full px-2 md:px-10 py-4 md:py-8 dark:text-gray-400'>
 					<div className='h-auto'>
 						<div className="flex flex-col">
 							<div className="w-full flex flex-col md:flex-row">
@@ -49,24 +49,24 @@ const RoadsterIndex = ({ data }: { data: Roadster }) => {
 								<p className="block text-lg">Info</p>
 								<div className='px-2 max-w-sm md:max-w-xl'>
 									<div className='py-1 flex'>
-										<a className="block text-gray-400 w-48">Launch Time: </a>
-										<a className="block text-gray-400">{ data.launch_date_utc }</a>
+										<a className="block text-gray-800 dark:text-gray-400 w-48">Launch Time: </a>
+										<a className="block text-gray-800 dark:text-gray-400">{ data.launch_date_utc }</a>
 									</div>
 									<div className='py-1 flex'>
-										<a className="block text-gray-400 w-48">Orbit: </a>
-										<a className="block text-gray-400">{ data.orbit_type }</a>
+										<a className="block text-gray-800 dark:text-gray-400 w-48">Orbit: </a>
+										<a className="block text-gray-800 dark:text-gray-400">{ data.orbit_type }</a>
 									</div>
 									<div className='py-1 flex'>
-										<a className="block text-gray-400 w-48">Speed: </a>
-										<a className="block text-gray-400">{ data.speed_kph } km/h</a>
+										<a className="block text-gray-800 dark:text-gray-400 w-48">Speed: </a>
+										<a className="block text-gray-800 dark:text-gray-400">{ data.speed_kph } km/h</a>
 									</div>
 									<div className='py-1 flex'>
-										<a className="block text-gray-400 w-48">Distance From Earth: </a>
-										<a className="block text-gray-400">{ data.earth_distance_km } km</a>
+										<a className="block text-gray-800 dark:text-gray-400 w-48">Distance From Earth: </a>
+										<a className="block text-gray-800 dark:text-gray-400">{ data.earth_distance_km } km</a>
 									</div>
 									<div className='py-1 flex'>
-										<a className="block text-gray-400 w-48">Distance From Mars: </a>
-										<a className="block text-gray-400">{ data.mars_distance_km } km</a>
+										<a className="block text-gray-800 dark:text-gray-400 w-48">Distance From Mars: </a>
+										<a className="block text-gray-800 dark:text-gray-400">{ data.mars_distance_km } km</a>
 									</div>
 								</div>
 							</div>

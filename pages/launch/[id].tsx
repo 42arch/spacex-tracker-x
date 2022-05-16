@@ -54,7 +54,7 @@ export default function Launch({ data } : IProp) {
 
 	return <Layout>
 			<section className='w-full relative pt-4 pb-18 px-2 md:px-10 flex flex-col'>
-				<div className='w-full h-full px-4 md:px-10 py-4 md:py-8 text-gray-300'>
+				<div className='w-full h-full px-4 md:px-10 py-4 md:py-8 dark:text-gray-200'>
 					<div className="h-auto">
 					{
 						data ? (
@@ -77,7 +77,7 @@ export default function Launch({ data } : IProp) {
 										<p className={`py-2 uppercase ${ data.upcoming ? 'text-blue-500' : ( data.success ? 'text-green-500' : 'text-red-500' )}`}>
 											{ data.success ? 'success' : (data.upcoming ? 'upcoming' : 'fail') }
 										</p>
-										<button onClick={() => { window.open(data.links.webcast, '__blank') }} className="border-2 border-gray-400 text-gray-400 hover:text-orange-500 hover:border-orange-500 duration-100 rounded h-10">
+										<button onClick={() => { window.open(data.links.webcast, '__blank') }} className="border-2 min-w-[10rem] border-gray-800 dark:border-gray-400 text-gray-800 dark:text-gray-400 hover:text-orange-500 hover:border-orange-500 duration-100 rounded h-10">
 											Watch Webcast
 										</button>
 									</div>
@@ -95,7 +95,7 @@ export default function Launch({ data } : IProp) {
 											<div className="py-4">
 												<p className="block w-24 text-lg">Rocket</p>
 												<Link href={`/rocket/${data.rocket.id}`} >
-													<button className="block text-gray-400 px-2 py-4 hover:text-white underline underline-offset-2">{ data.rocket.name }</button>
+													<button className="common-link">{ data.rocket.name }</button>
 												</Link>
 											</div>
 										)
@@ -105,7 +105,7 @@ export default function Launch({ data } : IProp) {
 											<div className="py-4">
 												<p className="block w-24 text-lg">Launchpad</p>
 												<Link href={`/launchpad/${data.launchpad.id}`}>
-													<button className="block text-gray-400 px-2 py-4 hover:text-white underline underline-offset-2">{ data.launchpad.name }</button>
+													<button className="common-link">{ data.launchpad.name }</button>
 												</Link>
 											</div>
 										)
@@ -116,21 +116,21 @@ export default function Launch({ data } : IProp) {
 											{
 												data.payloads && data.payloads.map(payload => (
 													<Link key={payload.id} href={`/payload/${payload.id}`}>
-														<button className="block text-gray-400 px-2 py-4 hover:text-white underline underline-offset-2">{ payload.name }</button>
+														<button className="common-link">{ payload.name }</button>
 													</Link>
 												))
 											}
 										</div>
 									</div>
 									{
-										data.crew && (
+										data.crew.length > 0 && (
 											<div className="py-4">
 												<p className="block w-24 text-lg">Crews</p>
 												<div>
 													{
 														data.crew && data.crew.map(crew => (
 															<Link key={crew.id} href={`/crew/${crew.id}`}>
-																<button className="block text-gray-400 px-2 py-4 hover:text-white underline underline-offset-2">{ crew.name }</button>
+																<button className="common-link">{ crew.name }</button>
 															</Link>
 														))
 													}
@@ -139,7 +139,7 @@ export default function Launch({ data } : IProp) {
 										)
 									}
 									{
-										data.ships && (
+										data.ships.length > 0 && (
 											<div className="py-4">
 												<p className="block w-24 text-lg">Ships</p>
 												<div>
