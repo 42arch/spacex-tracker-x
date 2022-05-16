@@ -65,15 +65,18 @@ const NextLaunchSection: FunctionComponent<IProps> = ({ data }) => {
 								</div>
 							</div>
 							<div className='flex flex-col text-base'>
-								<span>
-									{ t('next.info.launchTime') }: { format(new Date(data.date_utc), "yyyy-MM-dd HH:mm:ss 'UTC'") }
-								</span>
-								<span>
-									{ t('next.info.launchSite') }: { data.launchpad.name }
-								</span>
-								<span>
-									{ t('next.info.rocket') }: { data.rocket.name }
-								</span>
+								<p className='flex'>
+									<span className='block w-20'>{ t('next.info.launchTime') }:</span>
+									<span>{ format(new Date(data.date_utc), "yyyy-MM-dd HH:mm:ss 'UTC'") }</span>
+								</p>
+								<p className='flex'>
+									<span className='block w-20'>{ t('next.info.launchSite') }:</span>
+									<span>{ data.launchpad.name }</span>
+								</p>
+								<p className='flex'>
+									<span className='block w-20'>{ t('next.info.rocket') }:</span>
+									<span>{ data.rocket.name }</span>
+								</p>
 							</div>
 						</div>
 					)
