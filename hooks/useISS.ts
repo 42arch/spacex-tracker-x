@@ -1,5 +1,7 @@
 import useSWR, { Fetcher } from 'swr'
 import { FeatureCollection, Feature } from 'geojson'
+import { useEffect, useState } from "react"
+import { Terminator } from "../utils/solar"
 import { ISSData } from '../types'
 
 const fetcher = (url: string) => fetch(url).then(res => res.json())
@@ -34,10 +36,26 @@ export const useISS = () => {
 					properties: {}
 				}
 			]
-		},
+		} as FeatureCollection,
 		line,
 		data,
 		error,
 		loading: !error && !data
+	}
+}
+
+export const useTerminator = () => {
+	const [terminator, updateTerminator] = useState<string | FeatureCollection>(new Terminator().toGeoJSON())
+
+	useEffect(() => {
+		let timer = setInterval(() => {
+			const geojson = new Terminator().toGeoJSON()
+			updateTerminator(geojson)
+		}, 6000)
+		return () => clearInterval(timer)
+	}, [])
+
+	return {
+		terminator
 	}
 }

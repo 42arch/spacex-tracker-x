@@ -1,5 +1,5 @@
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import dynamic from 'next/dynamic'
-import Head from 'next/head'
 import Layout from '../../components/Layout'
 
 const GlobalMap = dynamic(
@@ -7,11 +7,19 @@ const GlobalMap = dynamic(
 	{ ssr: false }
 )
 
+export async function getStaticProps({ locale }: {locale: any}) {
+	return {
+		props: {
+			...(await serverSideTranslations(locale, ['common']))
+		}
+	}
+}
+
 const ISSIndex = () => {
 	return (
 		<Layout simple>
 			<div className='w-full h-main absolute'>
-			<section className='w-full h-full min-h-main py-2 px-0 md:px-4 relative'>
+			<section className='w-full h-full min-h-main px-0 relative'>
 				<GlobalMap/>
 			</section>
 			</div>

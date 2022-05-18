@@ -48,7 +48,9 @@ const NavHeader = () => {
 					</Link>
 				</li>
 				<li className='mx-4 my-6 md:my-0'>
-					<a onClick={() => { window.alert('not ready yet') }} className='text-xl hover:text-orange-500 duration-500'>{ t('nav.iss') }</a>
+					<Link href='/iss'>
+						<a className='text-xl hover:text-orange-500 duration-500'>{ t('nav.iss') }</a>
+					</Link>
 				</li>
 				<li className='mx-4 my-6 md:my-0'>
 					<a href="https://github.com/REND42/spacex-tracker-x" className='text-xl hover:text-orange-500 duration-500'>
