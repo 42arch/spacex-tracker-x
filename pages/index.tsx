@@ -18,11 +18,10 @@ export async function getStaticProps({ locale }: {locale: any}) {
 
 const Home = ({ data } : InferGetStaticPropsType<typeof getStaticProps>) => {
 	return (
-		<Layout home>
+		<Layout home simple>
 			<Head>
 				<title>{ siteTitle }</title>
 			</Head>
-
 			<div className="flex flex-col h-full relative">
 				<NextLaunchSection data={data}/>
 			</div>

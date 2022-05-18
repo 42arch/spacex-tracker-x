@@ -1,4 +1,7 @@
 /** @type {import('next').NextConfig} */
+
+const webpack = require('webpack')
+
 const { i18n } = require('./next-i18next.config')
 const farm = Array.from({length: 10}, (v, k) => k).map(i => (`farm${i}.staticflickr.com`))
 const domains = [
@@ -8,9 +11,17 @@ const domains = [
 
 const nextConfig = {
 	i18n,
-  reactStrictMode: true,
+	reactStrictMode: true,
 	images: {
 		domains: domains
+	},
+	webpack: config => {
+		config.plugins.push(
+			new webpack.DefinePlugin({
+				CESIUM_BASE_URL: JSON.stringify('cesium'),
+			}),
+		)
+		return config
 	}
 }
 

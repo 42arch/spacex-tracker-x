@@ -1,6 +1,3 @@
-/* eslint-disable jsx-a11y/alt-text */
-/* eslint-disable @next/next/no-img-element */
-
 import React, { FunctionComponent } from 'react'
 import Map, { Marker, NavigationControl } from 'react-map-gl'
 

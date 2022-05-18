@@ -8,7 +8,7 @@ import NavHeader from './NavHeader'
 
 export const siteTitle = 'SpaceX Tracker X'
 
-const Layout = ({ children, home }: any) => {
+const Layout = ({ children, home, simple }: any) => {
 	const { t } = useTranslation()
 	const router = useRouter()
 	
@@ -23,10 +23,10 @@ const Layout = ({ children, home }: any) => {
 				<meta name="og:title" content={siteTitle} />
 			</Head>
 			<NavHeader />
-			<main className={`font-DIN ${ !home ? 'min-h-main' : 'h-main_footer min-h-main_footer'}`}>
+			<main className={`font-DIN ${ !simple ? 'min-h-main' : 'h-main_footer min-h-main_footer'}`}>
 				{ children }
 				{
-					!home && (
+					!simple && (
 						<div className='w-full px-6 md:px-20 h-12'>
 							<span onClick={() => router.back()} className='cursor-pointer w-20 h-12 leading-normal flex items-center text-center duration-300 text-gray-800 dark:text-gray-400 hover:text-black hover:dark:text-white'>
 								<ArrowSmLeftIcon className="h-5 w-5"/>
