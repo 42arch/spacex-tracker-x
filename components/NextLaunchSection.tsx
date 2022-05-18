@@ -1,12 +1,9 @@
 import React, { FunctionComponent, useEffect, useState } from 'react'
 import { ArrowDownIcon, ExternalLinkIcon } from '@heroicons/react/solid'
-import { useNextLaunch } from '../hooks/useNextLaunch'
-import { formatDuration, intervalToDuration, Duration, differenceInDays, format } from 'date-fns'
+import { intervalToDuration, Duration, differenceInDays, format } from 'date-fns'
 import { useTranslation } from 'next-i18next'
 import { LaunchInfo } from '../types'
-import Button from './Button'
 import Link from 'next/link'
-
 interface IProps {
 	data: LaunchInfo
 }
