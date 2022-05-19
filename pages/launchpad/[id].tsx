@@ -5,8 +5,12 @@ import React from 'react'
 import Layout from '../../components/Layout'
 import { LaunchPad } from '../../types'
 import { getLaunchpads, getOneLaunchpad } from '../../utils/api'
-import Map from '../../components/Map/LocationMap'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import dynamic from 'next/dynamic'
+
+const Map = dynamic(() => import('../../components/Map/MapCom'),
+	{ ssr: false }
+)
 
 export async function getStaticPaths() {
 	const launchpads = await getLaunchpads()

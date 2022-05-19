@@ -1,7 +1,6 @@
 import React, { FunctionComponent, useEffect, useRef, useState } from "react"
 import mapboxgl, { LngLatLike, Map, Marker } from "mapbox-gl"
-import { Terminator } from "../../utils/solar"
-import { FeatureCollection, GeoJsonProperties, Geometry } from "geojson"
+import { FeatureCollection } from "geojson"
 import { useISS } from "../../hooks/useISS"
 import { useTerminator } from "../../hooks/useISS"
 
@@ -122,7 +121,7 @@ const MapCon: FunctionComponent = ({}) => {
 		<>
 			<div ref={ mapContainer } className="w-full h-full">
 			</div>
-			<div className=" w-1/3 md:w-1/12 p-2 rounded h-36 dark:bg-slate-800 bg-slate-400 absolute bottom-0 right-0 flex flex-col">
+			<div className="w-1/3 md:w-1/12 p-2 rounded h-36 dark:bg-slate-800 bg-slate-400 absolute bottom-0 left-0 flex flex-col z-10">
 				{
 					mapStyles.map((style, idx) => (
 						<div key={style.value} className="h-8 leading-8 flex items-center">
@@ -131,6 +130,36 @@ const MapCon: FunctionComponent = ({}) => {
 						</div>
 					))
 				}
+			</div>
+			<div className="cursor-pointer w-1/2 md:w-1/6 min-h-[16rem] dark:bg-slate-800 bg-slate-400 p-2 md:p-4 rounded absolute bottom-0 right-0 opacity-50 hover:opacity-95 ">
+				<div className="w-full pt-2">
+					<p className="pb-2">Info</p>
+					<div className="w-full flex justify-between pl-2 text-sm">
+						<span className=" w-24">latitude:</span>
+						<span>{ data?.iss.latitude }</span>
+					</div>
+					<div className="w-full flex justify-between pl-2 text-sm">
+						<span className=" w-24">longitude:</span>
+						<span>{ data?.iss.longitude }</span>
+					</div>
+					<div className="w-full flex justify-between pl-2 text-sm">
+						<span className=" w-24">altitude:</span>
+						<span>{ data?.iss.altitude }</span>
+					</div>
+					<div className="w-full flex justify-between pl-2 text-sm">
+						<span className=" w-24">velocity:</span>
+						<span>{ data?.iss.velocity } km/h</span>
+					</div>
+				</div>
+				<div className="w-full pt-2">
+					<p className="pb-2">{ data?.crews.number } People In Space Now</p>
+					{
+						data?.crews.people.map(p => (
+							<p className="pl-2 text-sm" key={p.name}>{ p.name }</p>
+						))
+					}
+				</div>
+
 			</div>
 		</>
 	)
