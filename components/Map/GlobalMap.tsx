@@ -158,14 +158,16 @@ const MapCon: FunctionComponent = ({}) => {
 						</div>
 					)
 				}
-				<div className="w-full pt-2">
-					<p className="pb-2">{ data?.crews.number } { t('iss.crewInfo') } </p>
-					{
-						data?.crews.people.map(p => (
-							<p className="pl-2 text-sm" key={p.name}>{ p.name }</p>
-						))
-					}
-				</div>
+				{
+					data?.crews && (
+						<div className="w-full pt-2">
+							<p className="pb-2">{ data?.crews.number } { t('iss.crewInfo') } </p>
+								data.crews.people.map(p => (
+									<p className="pl-2 text-sm" key={p.name}>{ p.name }</p>
+								))
+						</div>
+					)
+				}
 			</div>
 		</>
 	)
