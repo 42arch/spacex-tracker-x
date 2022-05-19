@@ -71,5 +71,19 @@
 	},
 	"crew": {
 		"from": "来自"
+	},
+	"iss": {
+		"map": {
+			"dark": "暗色",
+			"light": "亮色",
+			"satellite": "卫星",
+			"streets": "街道"
+		},
+		"info": "信息",
+		"latitude": "纬度",
+		"longitude": "经度",
+		"altitude": "高度",
+		"velocity": "速度",
+		"crewInfo": "人在太空中"
 	}
 }

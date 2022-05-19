@@ -3,6 +3,7 @@ import mapboxgl, { LngLatLike, Map, Marker } from "mapbox-gl"
 import { FeatureCollection } from "geojson"
 import { useISS } from "../../hooks/useISS"
 import { useTerminator } from "../../hooks/useISS"
+import { useTranslation } from "next-i18next"
 
 const mapStyles = [
 	{ label: 'dark', value: 'dark-v10' },
@@ -12,6 +13,8 @@ const mapStyles = [
 ]
 
 const MapCon: FunctionComponent = ({}) => {
+	const { t } = useTranslation()
+
 	const createMarker = (url: string, lnglat: LngLatLike) => {
 		const el = document.createElement('div')
 		el.className = 'marker'
@@ -126,40 +129,43 @@ const MapCon: FunctionComponent = ({}) => {
 					mapStyles.map((style, idx) => (
 						<div key={style.value} className="h-8 leading-8 flex items-center">
 							<input className="mr-4" onClick={(e) => { setStyleChecked(style.value) }} id={style.value} type="radio" name="rtoggle" defaultValue={style.label} defaultChecked={ styleChecked === style.value } />
-							<label className="cursor-pointer uppercase" htmlFor={ style.value }>{style.label}</label>
+							<label className="cursor-pointer uppercase" htmlFor={ style.value }>{ t(`iss.map.${style.label}`) }</label>
 						</div>
 					))
 				}
 			</div>
 			<div className="cursor-pointer w-1/2 md:w-1/6 min-h-[16rem] dark:bg-slate-800 bg-slate-400 p-2 md:p-4 rounded absolute bottom-0 right-0 opacity-50 hover:opacity-95 ">
+				{
+					data?.iss && (
+						<div className="w-full pt-2">
+							<p className="pb-2"> { t('iss.info') } </p>
+							<div className="w-full flex justify-between pl-2 text-sm">
+								<span className=" w-24"> { t('iss.latitude') } :</span>
+								<span>{ data?.iss.latitude }</span>
+							</div>
+							<div className="w-full flex justify-between pl-2 text-sm">
+								<span className=" w-24">{ t('iss.longitude') }:</span>
+								<span>{ data?.iss.longitude }</span>
+							</div>
+							<div className="w-full flex justify-between pl-2 text-sm">
+								<span className=" w-24">{ t('iss.altitude') }:</span>
+								<span>{ data?.iss.altitude }</span>
+							</div>
+							<div className="w-full flex justify-between pl-2 text-sm">
+								<span className=" w-24">{ t('iss.velocity') }:</span>
+								<span>{ data?.iss.velocity } km/h</span>
+							</div>
+						</div>
+					)
+				}
 				<div className="w-full pt-2">
-					<p className="pb-2">Info</p>
-					<div className="w-full flex justify-between pl-2 text-sm">
-						<span className=" w-24">latitude:</span>
-						<span>{ data?.iss.latitude }</span>
-					</div>
-					<div className="w-full flex justify-between pl-2 text-sm">
-						<span className=" w-24">longitude:</span>
-						<span>{ data?.iss.longitude }</span>
-					</div>
-					<div className="w-full flex justify-between pl-2 text-sm">
-						<span className=" w-24">altitude:</span>
-						<span>{ data?.iss.altitude }</span>
-					</div>
-					<div className="w-full flex justify-between pl-2 text-sm">
-						<span className=" w-24">velocity:</span>
-						<span>{ data?.iss.velocity } km/h</span>
-					</div>
-				</div>
-				<div className="w-full pt-2">
-					<p className="pb-2">{ data?.crews.number } People In Space Now</p>
+					<p className="pb-2">{ data?.crews.number } { t('iss.crewInfo') } </p>
 					{
 						data?.crews.people.map(p => (
 							<p className="pl-2 text-sm" key={p.name}>{ p.name }</p>
 						))
 					}
 				</div>
-
 			</div>
 		</>
 	)

@@ -71,5 +71,19 @@
 	},
 	"crew": {
 		"from": "From"
+	},
+	"iss": {
+		"map": {
+			"dark": "dark",
+			"light": "light",
+			"satellite": "satellite",
+			"streets": "streets"
+		},
+		"info": "info",
+		"latitude": "latitude",
+		"longitude": "longitude",
+		"altitude": "altitude",
+		"velocity": "velocity",
+		"crewInfo": "People In Space Now"
 	}
 }

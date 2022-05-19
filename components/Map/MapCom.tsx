@@ -9,7 +9,7 @@ interface IProps {
 }
 const accessToken = 'pk.eyJ1IjoiaW5nZW40MiIsImEiOiJjazlsMnliMXoyMWoxM2tudm1hajRmaHZ6In0.rWx_wAz2cAeMIzxQQfPDPA'
 
-const MapComponent: FunctionComponent<IProps> = ({ coordinate }) => (
+const MapCom: FunctionComponent<IProps> = ({ coordinate }) => (
 	<Map mapboxAccessToken = {accessToken}
 		initialViewState={{
 			longitude: coordinate.longitude,
@@ -27,4 +27,4 @@ const MapComponent: FunctionComponent<IProps> = ({ coordinate }) => (
 	</Map>
 )
 
-export default MapComponent
+export default MapCom
